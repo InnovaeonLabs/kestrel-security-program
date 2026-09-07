@@ -78,7 +78,7 @@ judgment is visible instead of hidden. See [`docs/architecture/lab-vs-enterprise
 | Attack scenarios (SCATTERED SABLE chain) | [`attack-scenarios/scattered-sable/`](attack-scenarios/scattered-sable/) |
 | Purple-team report (before/after) | [`purple-team/`](purple-team/) |
 | Incident response + DFIR | [`incident-response/`](incident-response/) · [`dfir/`](dfir/) |
-| Malware analysis (benign, self-authored sample) | [`dfir/malware-analysis/`](dfir/) |
+| Malware analysis (benign, self-authored sample) | [`dfir/malware-analysis/`](dfir/malware-analysis/analysis.md) |
 | Threat intelligence | [`threat-intel/`](threat-intel/) |
 | Cloud / IAM security | [`cloud-security/`](cloud-security/) |
 | Identity attack-path analysis | [`identity/`](identity/) |
