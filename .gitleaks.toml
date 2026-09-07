@@ -1,0 +1,18 @@
+# gitleaks config for Project KESTREL.
+# The repo intentionally contains LABELLED lab decoy secrets so CI can demonstrate
+# secret scanning. They are allowlisted here (with reasons) so the pipeline stays
+# green while still catching any NEW, un-allowlisted secret.
+title = "kestrel-gitleaks"
+
+[allowlist]
+description = "Intentional, non-functional lab decoys (documented in code as lab-only)"
+regexes = [
+  '''kestrel-dev-secret''',          # app/auth.py: intentional weak JWT secret (finding APP-2)
+  '''kp_live_5f3a9c2b7e1d''',        # app/db.py + copilot.py: fake 'live' token decoy
+  '''changeme-lab-only''',           # terraform: intentional hardcoded RDS password (Checkov CKV_SECRET_6)
+  '''lab-only-not-a-secret''',       # docker-compose postgres dev password
+]
+paths = [
+  '''evidence/.*''',                 # captured scan outputs may echo the decoys
+  '''.*\.sample\..*''',
+]

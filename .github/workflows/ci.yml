@@ -1,0 +1,80 @@
+name: kestrel-ci
+# DevSecOps gate for Project KESTREL.
+#  * TESTS are gating (detection + hardening unit tests must pass).
+#  * Security scanners are REPORT-ONLY here on purpose: this repo intentionally
+#    contains a vulnerable app + misconfigured IaC + labelled lab secrets as the
+#    TARGET, so the scanners are meant to FIND things. In a real product repo the
+#    same jobs would gate. The supply-chain demo (devsecops/ci/) shows a NEW
+#    secret/vuln being caught and failing.
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:                       # GATING
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Install tooling
+        run: |
+          python -m pip install -U pip
+          pip install -r requirements.txt
+          pip install -r range/kestrel-api/requirements.txt
+      - name: Build telemetry + run detections
+        run: |
+          python attack-scenarios/scattered-sable/run.py
+          python automation/normalize/normalize.py
+          python automation/detect/run_sigma.py
+          python automation/report/metrics.py
+      - name: Unit tests (detections + hardening)  # gating
+        run: python -m pytest -q detections/tests appsec/tests
+
+  secret-scan:                 # report-only (finds labelled lab decoys)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        continue-on-error: true
+        env:
+          GITLEAKS_CONFIG: .gitleaks.toml
+
+  sast:                        # report-only (finds intentional app vulns)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Semgrep
+        continue-on-error: true
+        run: |
+          python -m pip install semgrep
+          semgrep --config p/python --config p/security-audit range/kestrel-api --sarif -o semgrep.sarif || true
+      - uses: actions/upload-artifact@v4
+        with: { name: semgrep-sarif, path: semgrep.sarif }
+
+  iac-scan:                    # report-only (finds the 41 Terraform misconfigs)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkov
+        continue-on-error: true
+        run: |
+          python -m pip install checkov
+          python -m checkov.main -d cloud-security/terraform --compact || true
+
+  deps:                        # report-only (dependency vulns)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: pip-audit
+        continue-on-error: true
+        run: |
+          python -m pip install pip-audit
+          pip-audit -r range/kestrel-api/requirements.txt || true
