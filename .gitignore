@@ -19,3 +19,6 @@ automation/**/_raw/
 Thumbs.db
 .idea/
 .vscode/
+
+# Regenerated range data (telemetry, db); curated copies live under evidence/
+range/data/
