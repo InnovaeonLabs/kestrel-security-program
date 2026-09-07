@@ -32,7 +32,13 @@ The misconfigurations above are what make the cloud attack *possible*; these det
 - **KP-0031** IAM privilege escalation (AdministratorAccess attached)
 - **KP-0032** S3 bucket policy made public
 
+## Optional: live scenario (LocalStack)
+For anyone with ~1 GB RAM headroom, [`localstack/`](localstack/) runs the same misconfig + attack against a free local
+AWS emulator so KP-0030/0031/0032 fire on **live-confirmed** state (`bash cloud-security/localstack/run-scenario.sh`).
+It's **optional** — the static path above is the default and needs no running cloud. Scripts are syntax-checked and
+ready; not executed in this build (8 GB host, no long-running servers).
+
 ## Lab vs enterprise
-Lab: Terraform + Checkov (static) + CloudTrail **sample** + a Python attack-path graph. Enterprise: the same Terraform
-in CI + a CSPM/CNAPP (e.g., Prowler/GuardDuty/Config) on a live account + BloodHound/AzureHound over the real directory.
-Same findings, same reasoning — no running cloud or spend required.
+Lab: Terraform + Checkov (static) + CloudTrail **sample** + a Python attack-path graph (+ optional LocalStack live path).
+Enterprise: the same Terraform in CI + a CSPM/CNAPP (e.g., Prowler/GuardDuty/Config) on a live account +
+BloodHound/AzureHound over the real directory. Same findings, same reasoning — no running cloud or spend required.

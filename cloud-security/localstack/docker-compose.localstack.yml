@@ -1,0 +1,14 @@
+# OPTIONAL live-cloud scenario. Needs ~1 GB free RAM — not part of the default
+# range. LocalStack Community emulates AWS locally ($0). Run only if your host has
+# headroom; the default cloud path (static Terraform + Checkov + CloudTrail sample)
+# needs none of this.
+services:
+  localstack:
+    image: localstack/localstack:3
+    ports: ["4566:4566"]
+    environment:
+      SERVICES: "iam,s3,secretsmanager,sts,ec2"
+      DEBUG: "0"
+    mem_limit: 1g
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
