@@ -1,0 +1,20 @@
+title: Bulk Customer Data Export
+id: KP-0014
+status: experimental
+description: A single export returning a large number of card/customer records - potential insider or post-compromise exfiltration.
+author: Project KESTREL
+date: 2026/09/06
+logsource:
+  service: kestrel-api
+detection:
+  selection:
+    event_type: bulk_export
+    details.record_count|gte: 50
+  condition: selection
+fields: [actor, src_ip, details]
+falsepositives:
+  - Approved data-migration jobs (allow-list the service identity + change window)
+level: high
+tags:
+  - attack.t1074
+  - attack.collection

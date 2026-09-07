@@ -1,0 +1,19 @@
+title: JWT alg=none Accepted (Auth Bypass)
+id: KP-0010
+status: experimental
+description: API accepted a JSON Web Token signed with alg=none, allowing forged identities (OWASP API2).
+author: Project KESTREL
+date: 2026/09/06
+logsource:
+  service: kestrel-api
+detection:
+  selection:
+    event_type: auth_alg_none_accepted
+  condition: selection
+fields: [actor, src_ip]
+falsepositives:
+  - None in production; alg=none must never be accepted
+level: high
+tags:
+  - attack.t1550.001
+  - attack.defense_evasion

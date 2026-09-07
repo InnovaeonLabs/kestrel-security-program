@@ -1,0 +1,22 @@
+title: IAM Privilege Escalation - AdministratorAccess Attached
+id: KP-0031
+status: experimental
+description: AttachUserPolicy/AttachRolePolicy granting AdministratorAccess - classic cloud privilege escalation to full account control.
+author: Project KESTREL
+date: 2026/09/06
+logsource:
+  service: cloudtrail
+detection:
+  selection:
+    event_type:
+      - AttachUserPolicy
+      - AttachRolePolicy
+    details.request_json|contains: 'AdministratorAccess'
+  condition: selection
+fields: [actor, src_ip, details]
+falsepositives:
+  - A break-glass admin grant during an approved change (should be rare + ticketed)
+level: critical
+tags:
+  - attack.t1548
+  - attack.privilege_escalation

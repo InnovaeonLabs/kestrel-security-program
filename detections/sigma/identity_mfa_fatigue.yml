@@ -1,0 +1,25 @@
+title: MFA Fatigue - Repeated Push Denials
+id: KP-0001
+status: experimental
+description: Multiple MFA push denials for one user in a short window, a hallmark of MFA-fatigue / push-bombing prior to account takeover.
+references:
+  - https://attack.mitre.org/techniques/T1621/
+author: Project KESTREL
+date: 2026/09/06
+logsource:
+  service: okta
+detection:
+  selection:
+    event_type: user.mfa.push.deny
+  condition: selection
+aggregation:
+  group_by: actor
+  timespan: 10m
+  threshold: 3
+fields: [actor, src_ip, details]
+falsepositives:
+  - A user legitimately fat-fingering / dismissing prompts during travel
+level: high
+tags:
+  - attack.t1621
+  - attack.credential_access

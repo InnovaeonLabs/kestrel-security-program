@@ -1,0 +1,20 @@
+title: OAuth Token Grant Following MFA Fatigue
+id: KP-0002
+status: experimental
+description: OAuth/session token grant that follows an MFA-fatigue burst, indicating session hijack / token theft after coerced approval.
+author: Project KESTREL
+date: 2026/09/06
+logsource:
+  service: okta
+detection:
+  selection:
+    event_type: app.oauth.token.grant
+    technique: T1550.001
+  condition: selection
+fields: [actor, src_ip, details]
+falsepositives:
+  - Legitimate new device enrollment
+level: medium
+tags:
+  - attack.t1550.001
+  - attack.credential_access

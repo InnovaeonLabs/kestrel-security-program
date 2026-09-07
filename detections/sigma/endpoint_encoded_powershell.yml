@@ -1,0 +1,27 @@
+title: Encoded / Hidden PowerShell Execution
+id: KP-0020
+status: experimental
+description: PowerShell launched with encoded command and/or hidden window - common for staged payloads and living-off-the-land execution.
+author: Project KESTREL
+date: 2026/09/06
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    command_line|contains:
+      - '-enc'
+      - '-encodedcommand'
+      - 'frombase64string'
+      - '-w hidden'
+      - '-windowstyle hidden'
+      - 'downloadstring'
+      - 'iex '
+  condition: selection
+fields: [host, actor, process, parent_process, command_line]
+falsepositives:
+  - Some management tooling uses -enc; baseline your admin scripts and allow-list
+level: high
+tags:
+  - attack.t1059.001
+  - attack.execution

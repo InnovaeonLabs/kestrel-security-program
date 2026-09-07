@@ -1,0 +1,25 @@
+title: IDOR - Payout Object Enumeration
+id: KP-0012
+status: experimental
+description: Many payout reads with missing object-level authorization from one source in a short window - enumeration of payouts the caller does not own (OWASP API1/BOLA).
+author: Project KESTREL
+date: 2026/09/06
+logsource:
+  service: kestrel-api
+detection:
+  selection:
+    event_type: object_access
+    action: read_payout
+    details.authz: MISSING
+  condition: selection
+aggregation:
+  group_by: src_ip
+  timespan: 5m
+  threshold: 5
+fields: [actor, src_ip, object_id]
+falsepositives:
+  - A back-office batch job reading many payouts (should use a service identity and be allow-listed)
+level: high
+tags:
+  - attack.t1190
+  - attack.discovery

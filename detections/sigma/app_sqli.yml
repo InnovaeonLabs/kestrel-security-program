@@ -1,0 +1,22 @@
+title: SQL Injection Indicators in Merchant Search
+id: KP-0011
+status: experimental
+description: Merchant search received SQLi metacharacters or produced a query error, indicating injection attempts (OWASP API8).
+author: Project KESTREL
+date: 2026/09/06
+logsource:
+  service: kestrel-api
+detection:
+  sqli_flag:
+    event_type: db_query
+    details.sqli_suspected: true
+  query_error:
+    event_type: db_query_error
+  condition: sqli_flag or query_error
+fields: [actor, src_ip, details]
+falsepositives:
+  - Merchant names legitimately containing quotes (rare; tune on name set)
+level: high
+tags:
+  - attack.t1190
+  - attack.initial_access

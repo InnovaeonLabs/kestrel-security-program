@@ -113,6 +113,8 @@ def parse_cloudtrail(rec: dict) -> dict:
              severity="info", technique="T1078.004",
              details={"eventSource": rec.get("eventSource"),
                       "requestParameters": rec.get("requestParameters"),
+                      # flattened scalar so detections can substring-match nested params
+                      "request_json": json.dumps(rec.get("requestParameters", {}), separators=(",", ":")),
                       "errorCode": rec.get("errorCode")})
     return e
 

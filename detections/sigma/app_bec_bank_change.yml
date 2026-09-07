@@ -1,0 +1,19 @@
+title: Invoice Bank-Detail Change (BEC Indicator)
+id: KP-0015
+status: experimental
+description: Destination bank details on an invoice were changed - a core business-email-compromise / invoice-fraud action. Correlate with sender identity risk.
+author: Project KESTREL
+date: 2026/09/06
+logsource:
+  service: kestrel-api
+detection:
+  selection:
+    event_type: invoice_bank_change
+  condition: selection
+fields: [actor, src_ip, object_id, details]
+falsepositives:
+  - Legitimate merchant updating their payout account (should require dual control)
+level: medium
+tags:
+  - attack.t1114
+  - attack.collection

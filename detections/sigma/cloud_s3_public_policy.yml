@@ -1,0 +1,20 @@
+title: S3 Bucket Policy Made Public
+id: KP-0032
+status: experimental
+description: PutBucketPolicy set a policy allowing Principal '*' - a public-exposure change on a bucket that may hold statements/exports/backups.
+author: Project KESTREL
+date: 2026/09/06
+logsource:
+  service: cloudtrail
+detection:
+  selection:
+    event_type: PutBucketPolicy
+    details.request_json|contains: '"Principal":"*"'
+  condition: selection
+fields: [actor, src_ip, details]
+falsepositives:
+  - Intentionally public asset buckets (allow-list specific bucket names)
+level: high
+tags:
+  - attack.t1530
+  - attack.exfiltration

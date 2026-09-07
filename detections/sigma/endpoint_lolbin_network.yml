@@ -1,0 +1,24 @@
+title: LOLBin Making Network Connection
+id: KP-0021
+status: experimental
+description: A living-off-the-land binary (rundll32/mshta/regsvr32) or PowerShell initiating a network connection - possible C2 beacon.
+author: Project KESTREL
+date: 2026/09/06
+logsource:
+  product: windows
+  category: network_connection
+detection:
+  selection:
+    process|endswith:
+      - '\rundll32.exe'
+      - '\mshta.exe'
+      - '\regsvr32.exe'
+      - '\powershell.exe'
+  condition: selection
+fields: [host, actor, process, src_ip]
+falsepositives:
+  - Legitimate rundll32 network use is rare; investigate each
+level: medium
+tags:
+  - attack.t1071
+  - attack.command_and_control

@@ -15,13 +15,13 @@
 | # | Phase | Status | Key artifacts (path) |
 |---|-------|--------|----------------------|
 | 0 | Executive project definition | ✅ DONE | `docs/00-project-charter.md`, `README.md`, this file |
-| 1 | Business & asset modeling | 🟡 IN PROGRESS | `docs/architecture/company-profile.md`, `assets/asset-inventory.csv`, `docs/threat-model/threat-model.md`, `docs/risk/risk-register.csv` |
-| 2 | Architecture & lab deployment | ⬜ TODO | `docs/architecture/`, `range/`, `docker-compose.yml` |
-| 3 | Logging / telemetry foundation | ⬜ TODO | `automation/normalize/`, Sysmon config, `range/data/` |
-| 4 | Baseline security controls | ⬜ TODO | `config/`, hardening docs |
+| 1 | Business & asset modeling | ✅ DONE | `docs/architecture/company-profile.md`, `assets/asset-inventory.csv`, `docs/threat-model/threat-model.md`, `docs/risk/risk-register.csv` |
+| 2 | Architecture & lab deployment | ✅ DONE | `range/kestrel-api/` (FastAPI vuln app + LLM copilot), `docker-compose.yml`, `docs/architecture/lab-vs-enterprise.md`, `docs/architecture/current-state.md` |
+| 3 | Logging / telemetry foundation | ✅ DONE | `automation/normalize/normalize.py` (→DuckDB), `config/sysmon/`, `scripts/export-windows-telemetry.ps1` |
+| 4 | Baseline security controls | ⬜ TODO | `config/`, hardening docs (partly done via KESTREL_HARDENED toggle) |
 | 5 | Vulnerability & exposure assessment | ⬜ TODO | `vulnerability-management/` |
 | 6 | App / API / Cloud / Identity security | ⬜ TODO | `appsec/`, `cloud-security/`, `identity/` |
-| 7 | Detection engineering | ⬜ TODO | `detections/sigma/`, `automation/detect/` |
+| 7 | Detection engineering | ✅ DONE | `detections/sigma/` (15 rules), `automation/detect/run_sigma.py`, `detections/tests/` (32 tests pass), `detections/coverage/` |
 | 8 | Controlled adversary simulation | ⬜ TODO | `attack-scenarios/scattered-sable/` |
 | 9 | Incident response & DFIR | ⬜ TODO | `incident-response/`, `dfir/` |
 | 10 | Purple-team improvement | ⬜ TODO | `purple-team/` |
@@ -40,7 +40,11 @@
 - **D-005** Emulated adversary "SCATTERED SABLE" = fictional financially-motivated eCrime actor (Scattered-Spider-flavored identity/cloud/SaaS TTPs) to showcase modern fintech-relevant + high-differentiation domains.
 
 ## Open items / next action
-- **NEXT:** finish Phase 1 (validate threat model coverage, seed risk register with top 10 risks), then Phase 2 range compose file.
+- **NEXT:** Phase 8 — build the SCATTERED SABLE emulation (`attack-scenarios/scattered-sable/run.py`) that drives the
+  live/vulnerable API so the App/API + LLM rules fire; capture before/after. Then Phase 9 (IR/DFIR) writes the incident
+  from the resulting alerts. Phases 4/5/6 (baseline/vuln-mgmt/app-cloud-identity) can be authored alongside.
+- Detection pipeline is live: `make detect` → 8 alerts/8 techniques on current data; `make test` → 32 pass.
+- Coverage: 13 techniques with tested detections; documented gaps in `detections/coverage/coverage-matrix.md`.
 
 ## Metric placeholders (fill from real evidence — never invent)
 | Metric | Baseline | Post-improvement | Source of truth |

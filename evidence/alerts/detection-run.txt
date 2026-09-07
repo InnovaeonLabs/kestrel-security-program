@@ -1,0 +1,17 @@
+=== 8 alerts from 15 rules -> evidence\alerts\alerts.jsonl
+    1  IAM Privilege Escalation - AdministratorAccess Attached
+    1  S3 Bucket Policy Made Public
+    1  Secrets Manager Access by Assumed Role
+    1  Encoded / Hidden PowerShell Execution
+    1  LOLBin Making Network Connection
+    1  Registry Run Key Persistence
+    1  MFA Fatigue - Repeated Push Denials
+    1  OAuth Token Grant Following MFA Fatigue
+  (silent)   0  Invoice Bank-Detail Change (BEC Indicator)
+  (silent)   0  Bulk Customer Data Export
+  (silent)   0  IDOR - Payout Object Enumeration
+  (silent)   0  JWT alg=none Accepted (Auth Bypass)
+  (silent)   0  SQL Injection Indicators in Merchant Search
+  (silent)   0  SSRF to Internal / Cloud Metadata
+  (silent)   0  LLM Prompt Injection / Insecure Tool Use (Support Copilot)
+techniques detected: T1059.001, T1071, T1530, T1547.001, T1548, T1550.001, T1552.001, T1621

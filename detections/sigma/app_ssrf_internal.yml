@@ -1,0 +1,20 @@
+title: SSRF to Internal / Cloud Metadata
+id: KP-0013
+status: experimental
+description: Server-side fetch aimed at an internal address or cloud metadata endpoint (169.254.169.254), a path to steal instance/role credentials (OWASP API7).
+author: Project KESTREL
+date: 2026/09/06
+logsource:
+  service: kestrel-api
+detection:
+  selection:
+    event_type: ssrf_fetch
+    details.internal_target: true
+  condition: selection
+fields: [actor, src_ip, details]
+falsepositives:
+  - Legitimate internal integrations (should be explicit allow-listed, not via user-supplied URL)
+level: critical
+tags:
+  - attack.t1190
+  - attack.credential_access

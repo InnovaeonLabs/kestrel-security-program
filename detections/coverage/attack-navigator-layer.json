@@ -1,0 +1,138 @@
+{
+  "name": "Kestrel Pay \u2014 Detection Coverage",
+  "versions": {
+    "attack": "14",
+    "navigator": "4.9.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Detections that ship in detections/sigma (all unit-tested).",
+  "techniques": [
+    {
+      "techniqueID": "T1114",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0015 Invoice Bank-Detail Change (BEC Indicator)",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1074",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0014 Bulk Customer Data Export",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1190",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0012 IDOR - Payout Object Enumeration",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1550.001",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0010 JWT alg=none Accepted (Auth Bypass)",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1190",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0011 SQL Injection Indicators in Merchant Search",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1190",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0013 SSRF to Internal / Cloud Metadata",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1548",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0031 IAM Privilege Escalation - AdministratorAccess Attached",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1530",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0032 S3 Bucket Policy Made Public",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1552.001",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0030 Secrets Manager Access by Assumed Role",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1059.001",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0020 Encoded / Hidden PowerShell Execution",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1071",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0021 LOLBin Making Network Connection",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1547.001",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0022 Registry Run Key Persistence",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1621",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0001 MFA Fatigue - Repeated Push Denials",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1550.001",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0002 OAuth Token Grant Following MFA Fatigue",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1059",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0016 LLM Prompt Injection / Insecure Tool Use (Support Copilot)",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1552",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0016 LLM Prompt Injection / Insecure Tool Use (Support Copilot)",
+      "enabled": true
+    }
+  ],
+  "gradient": {
+    "colors": [
+      "#ffffff",
+      "#2ca25f"
+    ],
+    "minValue": 0,
+    "maxValue": 100
+  },
+  "legendItems": [
+    {
+      "label": "Tested detection",
+      "color": "#2ca25f"
+    }
+  ]
+}

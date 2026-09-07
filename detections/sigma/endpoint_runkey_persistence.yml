@@ -1,0 +1,22 @@
+title: Registry Run Key Persistence
+id: KP-0022
+status: experimental
+description: A value was written under a CurrentVersion\Run / RunOnce key - a common autostart persistence mechanism.
+author: Project KESTREL
+date: 2026/09/06
+logsource:
+  product: windows
+  category: registry_set
+detection:
+  selection:
+    TargetObject|contains:
+      - 'CurrentVersion\Run'
+      - 'CurrentVersion\RunOnce'
+  condition: selection
+fields: [host, actor, TargetObject]
+falsepositives:
+  - Legitimate software registering autostart on install (baseline known-good)
+level: medium
+tags:
+  - attack.t1547.001
+  - attack.persistence

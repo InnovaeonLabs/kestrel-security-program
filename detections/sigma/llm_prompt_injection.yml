@@ -1,0 +1,23 @@
+title: LLM Prompt Injection / Insecure Tool Use (Support Copilot)
+id: KP-0016
+status: experimental
+description: Support Copilot detected prompt-injection patterns, leaked its system prompt, or invoked a privileged tool out of policy (OWASP LLM01/LLM06).
+author: Project KESTREL
+date: 2026/09/06
+logsource:
+  service: kestrel-api
+detection:
+  selection:
+    event_type:
+      - copilot_injection_suspected
+      - copilot_system_prompt_leak
+      - copilot_tool_call
+  condition: selection
+fields: [actor, src_ip, session_id, details]
+falsepositives:
+  - Security researchers testing the copilot (should be in a test tenant)
+level: high
+tags:
+  - attack.t1059
+  - attack.t1552
+  - attack.execution
