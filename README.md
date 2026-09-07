@@ -26,12 +26,12 @@ intrusion (**"SCATTERED SABLE"**) all the way through the lifecycle:
 | A full **incident case** + **DFIR timeline** + **executive summary** | Markdown, Python |
 | **GRC**: risk register + NIST CSF 2.0 / CIS v8 mapping | Markdown, CSV |
 
-**Standout, measurable outcomes** (computed from real artifacts, not invented — see [`/metrics`](metrics/)):
-- Detection coverage of the emulated intrusion raised from **X% → Y%** across N ATT&CK techniques
-- Mean time to detect the intrusion reduced from **A → B** (measured off the incident timeline)
-- False-positive rate on the top 5 detections cut **P% → Q%** after tuning (before/after alert counts)
-- **Z critical/high** findings triaged → prioritized by exploitability+exposure+asset value → remediated → retested
-- ~**M analyst-minutes/run** saved by automation (triage + enrichment + reporting)
+**Standout, measurable outcomes** (computed from real artifacts, not invented — see [`metrics/metrics.json`](metrics/metrics.json)):
+- Detection coverage of the emulated intrusion raised from **0% → 100%** (12/12 ATT&CK techniques, 15/15 steps)
+- Intrusion detectable at **initial access**, ~**6 minutes before** the first business-impact action (a real containment window)
+- **0 false positives** on a 40-event benign baseline; **32 detection unit tests** pass (fires-on-malicious + silent-on-benign)
+- **12 findings** triaged → prioritized by exploitability + exposure + asset value + attack-path → **10 remediated** (2 retested with passing tests)
+- **7 → 0 identity/cloud attack paths** to the crown jewels after least-privilege; **41 IaC misconfigs** caught by static scanning
 
 > Architecture diagram: [`docs/architecture/`](docs/architecture/) · One-page exec summary: [`reports/`](reports/)
 

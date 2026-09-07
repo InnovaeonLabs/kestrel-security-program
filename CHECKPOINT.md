@@ -18,19 +18,19 @@
 | 1 | Business & asset modeling | ✅ DONE | `docs/architecture/company-profile.md`, `assets/asset-inventory.csv`, `docs/threat-model/threat-model.md`, `docs/risk/risk-register.csv` |
 | 2 | Architecture & lab deployment | ✅ DONE | `range/kestrel-api/` (FastAPI vuln app + LLM copilot), `docker-compose.yml`, `docs/architecture/lab-vs-enterprise.md`, `docs/architecture/current-state.md` |
 | 3 | Logging / telemetry foundation | ✅ DONE | `automation/normalize/normalize.py` (→DuckDB), `config/sysmon/`, `scripts/export-windows-telemetry.ps1` |
-| 4 | Baseline security controls | ⬜ TODO | `config/`, hardening docs (partly done via KESTREL_HARDENED toggle) |
-| 5 | Vulnerability & exposure assessment | ⬜ TODO | `vulnerability-management/` |
-| 6 | App / API / Cloud / Identity security | 🟡 PARTIAL | `appsec/` (8 findings + retest, 4 tests pass); cloud/identity TODO |
-| 7 | Detection engineering | ✅ DONE | `detections/sigma/` (15 rules), `automation/detect/run_sigma.py`, `detections/tests/` (32 tests pass), `detections/coverage/` |
+| 4 | Baseline security controls | ✅ DONE | `config/sysmon/`, nginx rate-limit, `KESTREL_HARDENED` toggle, hardened.tf.example |
+| 5 | Vulnerability & exposure assessment | ✅ DONE | `vulnerability-management/register.csv` (12 findings, risk-based) + README |
+| 6 | App / API / Cloud / Identity security | ✅ DONE | `appsec/` (8 findings, 4 retest pass), `cloud-security/` (Checkov 41), `identity/graph/` (7→0) |
+| 7 | Detection engineering | ✅ DONE | `detections/sigma/` (15 rules), `automation/detect/run_sigma.py`, `detections/tests/` (32 pass), `detections/coverage/` |
 | 8 | Controlled adversary simulation | ✅ DONE | `attack-scenarios/scattered-sable/run.py` (15-step chain), `timeline.json` |
 | 9 | Incident response & DFIR | ✅ DONE | `incident-response/INC-2026-0821-*.md` + `exec-summary.md`, `dfir/investigation-notes.md` + `iocs.csv` |
 | 10 | Purple-team improvement | ✅ DONE | `purple-team/scattered-sable-purpleteam.md` (before/after measured) |
-| 11 | Automation | 🟡 PARTIAL | `automation/normalize`, `automation/detect`, `automation/report/metrics.py`; enrichment/triage/report-gen TODO |
-| 12 | GRC / risk / architecture review | ⬜ TODO | `docs/risk/`, `docs/architecture/target-state.md` |
-| 13 | Resilience & recovery | ⬜ TODO | `resilience/` |
-| 14 | Measurement & posture comparison | 🟡 PARTIAL | `metrics/metrics.json` (computed); dashboard TODO |
-| 15 | Portfolio / GitHub packaging | ⬜ TODO | `README.md`, `reports/` |
-| 16 | Resume / LinkedIn / interview prep | ⬜ TODO | `reports/career/` |
+| 11 | Automation | ✅ DONE | `automation/normalize` + `detect` + `report/metrics.py` + `report/build_report.py`; (future: SOAR playbook) |
+| 12 | GRC / risk / architecture review | ✅ DONE | `docs/risk/control-mapping.md` (NIST CSF 2.0/CIS v8/SOC 2), `docs/architecture/target-state.md` |
+| 13 | Resilience & recovery | ✅ DONE | `resilience/README.md` (RTO/RPO, golden IaC, monitoring recovery) |
+| 14 | Measurement & posture comparison | ✅ DONE | `metrics/metrics.json` (computed), `dashboard/index.html` (generated) |
+| 15 | Portfolio / GitHub packaging | ✅ DONE | `README.md` (progressive disclosure, real numbers), `reports/` assessments, CI |
+| 16 | Resume / LinkedIn / interview prep | ✅ DONE | `reports/career/` (resume bullets, LinkedIn, interview prep) |
 
 ## Decisions log (why we did it this way)
 - **D-001** Rejected multi-VM SOC (GOAD/Security Onion): won't fit 8 GB/2-core. Chose SIEM-less detection-as-code. *Tradeoff documented in `docs/architecture/lab-vs-enterprise.md` (Phase 2).*
@@ -39,12 +39,13 @@
 - **D-004** Cloud = Terraform + Checkov (static) + CloudTrail sample + Python policy-sim, not a running cloud; LocalStack optional if RAM allows.
 - **D-005** Emulated adversary "SCATTERED SABLE" = fictional financially-motivated eCrime actor (Scattered-Spider-flavored identity/cloud/SaaS TTPs) to showcase modern fintech-relevant + high-differentiation domains.
 
-## Open items / next action
-- **NEXT:** Phase 8 — build the SCATTERED SABLE emulation (`attack-scenarios/scattered-sable/run.py`) that drives the
-  live/vulnerable API so the App/API + LLM rules fire; capture before/after. Then Phase 9 (IR/DFIR) writes the incident
-  from the resulting alerts. Phases 4/5/6 (baseline/vuln-mgmt/app-cloud-identity) can be authored alongside.
-- Detection pipeline is live: `make detect` → 8 alerts/8 techniques on current data; `make test` → 32 pass.
-- Coverage: 13 techniques with tested detections; documented gaps in `detections/coverage/coverage-matrix.md`.
+## Status: ALL 16 PHASES COMPLETE (v1). Ready to push to GitHub.
+- Full pipeline reproduces: `make emulate && make detect && python automation/report/metrics.py && make report`.
+- `make test` (detections) + `pytest appsec/tests` (hardening) all pass (36 tests total).
+- **Optional future polish (v2):** SOAR-style triage/enrichment playbook + analyst-minutes-saved metric; a live
+  LocalStack cloud scenario; close ATT&CK gaps T1566/T1110/T1114.003; add screen-capture GIFs of detections firing.
+- **Before pushing:** create empty GitHub repo, then `git branch -M main && git remote add origin <url> && git push -u origin main`.
+  CI (`.github/workflows/ci.yml`) runs on first push; lab decoys are allowlisted in `.gitleaks.toml`.
 
 ## Metrics (computed from real evidence — metrics/metrics.json)
 | Metric | Baseline | Post-improvement | Source of truth |
