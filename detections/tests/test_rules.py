@@ -89,6 +89,17 @@ CASES = [
     ("KP-0032",
      [ev(source="cloudtrail", event_type="PutBucketPolicy", details={"request_json": '{"bucketPolicy":{"Statement":[{"Effect":"Allow","Principal":"*"}]}}'})],
      [ev(source="cloudtrail", event_type="PutBucketPolicy", details={"request_json": '{"bucketPolicy":{"Statement":[{"Effect":"Allow","Principal":"arn:aws:iam::555:root"}]}}'})]),
+    ("KP-0040",
+     [ev(source="email", event_type="email_url_click", details={"lookalike": True})],
+     [ev(source="email", event_type="email_url_click", details={"lookalike": False})]),
+    ("KP-0041",  # credential stuffing (>=10 failed logins / 5m / src_ip)
+     [ev(source="kestrel-api", event_type="login_failure", src_ip="45.77.0.10",
+         ts=f"2026-08-21T14:00:{i:02d}.000Z", _n=i) for i in range(10)],
+     [ev(source="kestrel-api", event_type="login_failure", src_ip="203.0.113.10",
+         ts=f"2026-08-21T14:00:{i:02d}.000Z", _n=i) for i in range(3)]),
+    ("KP-0042",
+     [ev(source="saas", event_type="mailbox.rule.create", details={"forward_external": True})],
+     [ev(source="saas", event_type="mailbox.rule.create", details={"forward_external": False})]),
 ]
 
 

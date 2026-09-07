@@ -72,6 +72,13 @@
       "enabled": true
     },
     {
+      "techniqueID": "T1566",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0040 Phishing Link Click to Lookalike Domain",
+      "enabled": true
+    },
+    {
       "techniqueID": "T1059.001",
       "score": 100,
       "color": "#2ca25f",
@@ -90,6 +97,13 @@
       "score": 100,
       "color": "#2ca25f",
       "comment": "KP-0022 Registry Run Key Persistence",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1110",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0041 Credential Stuffing / Brute Force",
       "enabled": true
     },
     {
@@ -118,6 +132,13 @@
       "score": 100,
       "color": "#2ca25f",
       "comment": "KP-0016 LLM Prompt Injection / Insecure Tool Use (Support Copilot)",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1114.003",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0042 Mailbox Forwarding Rule to External Address",
       "enabled": true
     }
   ],

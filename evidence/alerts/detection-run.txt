@@ -1,4 +1,4 @@
-=== 22 alerts from 15 rules -> evidence\alerts\alerts.jsonl
+=== 25 alerts from 18 rules -> evidence\alerts\alerts.jsonl
     2  IAM Privilege Escalation - AdministratorAccess Attached
     2  S3 Bucket Policy Made Public
     2  Secrets Manager Access by Assumed Role
@@ -12,6 +12,9 @@
     1  JWT alg=none Accepted (Auth Bypass)
     1  SQL Injection Indicators in Merchant Search
     1  SSRF to Internal / Cloud Metadata
+    1  Phishing Link Click to Lookalike Domain
+    1  Credential Stuffing / Brute Force
     1  MFA Fatigue - Repeated Push Denials
     1  LLM Prompt Injection / Insecure Tool Use (Support Copilot)
-techniques detected: T1059, T1059.001, T1071, T1074, T1114, T1190, T1530, T1547.001, T1548, T1550.001, T1552, T1552.001, T1621
+    1  Mailbox Forwarding Rule to External Address
+techniques detected: T1059, T1059.001, T1071, T1074, T1110, T1114, T1114.003, T1190, T1530, T1547.001, T1548, T1550.001, T1552, T1552.001, T1566, T1621

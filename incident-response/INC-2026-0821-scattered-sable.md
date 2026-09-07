@@ -14,8 +14,8 @@
 An external actor compromised an engineer's identity via MFA push-bombing, stole a session token, established endpoint
 persistence and C2, then pivoted through the payments API (forged JWT, IDOR, SQLi, SSRF) into the AWS account, where it
 read the production payment-signing secret, escalated IAM to AdministratorAccess, exposed an S3 bucket, and attempted
-data exfiltration and invoice fraud. **The intrusion was detectable at initial access — ~6 minutes before the first
-fraud action** — by shipped detections. All 15 detections fired (22 alerts, 12 ATT&CK techniques). See the business
+data exfiltration and invoice fraud. **The intrusion was detectable at initial access — ~7 minutes before the first
+fraud action** — by shipped detections. All 18 detections fired (25 alerts, 16 ATT&CK techniques). See the business
 brief in [`exec-summary.md`](exec-summary.md).
 
 ## 2. Timeline (from `attack-scenarios/scattered-sable/timeline.json`)

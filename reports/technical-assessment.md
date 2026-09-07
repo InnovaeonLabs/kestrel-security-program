@@ -12,7 +12,7 @@ emulation → IR/DFIR → remediation → measurement. All artifacts are in-repo
 ## Controls built & validated
 | Domain | Control | Validation |
 |---|---|---|
-| Detection | 15 Sigma rules + Sigma→DuckDB runner | 32 unit tests pass; 22 alerts on emulation; 0 FP baseline |
+| Detection | 18 Sigma rules + Sigma→DuckDB runner | 42 unit tests pass; 25 alerts on emulation; 0 FP baseline |
 | Threat-informed defense | ATT&CK coverage matrix + Navigator | generated from rules; gaps documented |
 | Cloud/IAM | least-priv roles, SCP, S3 BPA, rotation | Checkov re-scan; attack-paths 7→0 |
 | AppSec | authz, alg-pinning, paramz queries, SSRF allow-list, copilot guards | `appsec/tests` (4 pass) |
@@ -25,7 +25,7 @@ endswith/regex/numeric modifiers, boolean conditions, and a temporal-aggregation
 rule is documented (threat, data source, logic, ATT&CK, false positives, validation, severity, response) and unit-tested.
 
 ## Emulation → detection mapping
-SCATTERED SABLE (15 steps) → 12 ATT&CK techniques → 15 detections → 22 alerts. Full table in
+SCATTERED SABLE (18 steps) → 16 ATT&CK techniques → 18 detections → 25 alerts. Full table in
 `attack-scenarios/scattered-sable/README.md`. App/API/LLM rules are silent on the benign baseline (0 FP) and fire under attack.
 
 ## Gaps & limitations (honest)

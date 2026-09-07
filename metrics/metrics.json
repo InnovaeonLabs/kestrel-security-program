@@ -1,14 +1,16 @@
 {
   "scenario": "SCATTERED SABLE",
-  "attack_steps": 15,
-  "rules_total": 15,
-  "rules_fired": 15,
-  "alerts_total": 22,
+  "attack_steps": 18,
+  "rules_total": 18,
+  "rules_fired": 18,
+  "alerts_total": 25,
   "techniques_in_chain": [
     "T1059.001",
     "T1071",
     "T1074",
+    "T1110",
     "T1114",
+    "T1114.003",
     "T1190",
     "T1530",
     "T1547.001",
@@ -16,13 +18,16 @@
     "T1550.001",
     "T1552",
     "T1552.001",
+    "T1566",
     "T1621"
   ],
   "techniques_detected": [
     "T1059.001",
     "T1071",
     "T1074",
+    "T1110",
     "T1114",
+    "T1114.003",
     "T1190",
     "T1530",
     "T1547.001",
@@ -30,15 +35,16 @@
     "T1550.001",
     "T1552",
     "T1552.001",
+    "T1566",
     "T1621"
   ],
   "chain_detection_coverage_pct": 100.0,
-  "attack_steps_detected": 15,
+  "attack_steps_detected": 18,
   "attack_step_coverage_pct": 100.0,
   "false_positives_on_benign_baseline": 0,
   "benign_baseline_events": 40,
-  "detection_opportunity_window_min": 6.0,
-  "detection_opportunity_note": "Intrusion is detectable at initial access (MFA fatigue, KP-0001) ~6.0 min before the first business-impact action (bulk export / BEC). In an enterprise this window is where containment happens.",
+  "detection_opportunity_window_min": 7.2,
+  "detection_opportunity_note": "Intrusion is detectable at initial access (MFA fatigue, KP-0001) ~7.2 min before the first business-impact action (bulk export / BEC). In an enterprise this window is where containment happens.",
   "unit_tests": "32 passed (fires-on-malicious + silent-on-benign for all 15 rules)",
-  "generated": "2026-09-07T02:11:27Z"
+  "generated": "2026-09-07T02:38:06Z"
 }

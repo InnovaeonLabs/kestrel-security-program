@@ -18,8 +18,8 @@ numbers and passing tests."
 1. **Context & crown jewels** (fintech, identity is the perimeter).
 2. **Architecture choice + tradeoff** (SIEM-less on 8 GB; document enterprise equivalent).
 3. **Telemetry** (normalize app/nginx/Sysmon/CloudTrail/identity → DuckDB).
-4. **Detection-as-code** (Sigma → SQL, 15 rules, 32 unit tests, coverage matrix with gaps).
-5. **Emulation → incident** (15-step chain → 22 alerts → IR/DFIR → RCA).
+4. **Detection-as-code** (Sigma → SQL, 18 rules, 42 unit tests, coverage matrix with gaps).
+5. **Emulation → incident** (18-step chain → 25 alerts → IR/DFIR → RCA).
 6. **Remediation + measurement** (hardened build retested; 0→100%, 7→0 paths, 0 FP).
 
 ## Architecture walkthrough

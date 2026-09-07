@@ -21,8 +21,8 @@
 | 4 | Baseline security controls | ✅ DONE | `config/sysmon/`, nginx rate-limit, `KESTREL_HARDENED` toggle, hardened.tf.example |
 | 5 | Vulnerability & exposure assessment | ✅ DONE | `vulnerability-management/register.csv` (12 findings, risk-based) + README |
 | 6 | App / API / Cloud / Identity security | ✅ DONE | `appsec/` (8 findings, 4 retest pass), `cloud-security/` (Checkov 41), `identity/graph/` (7→0) |
-| 7 | Detection engineering | ✅ DONE | `detections/sigma/` (15 rules), `automation/detect/run_sigma.py`, `detections/tests/` (32 pass), `detections/coverage/` |
-| 8 | Controlled adversary simulation | ✅ DONE | `attack-scenarios/scattered-sable/run.py` (15-step chain), `timeline.json` |
+| 7 | Detection engineering | ✅ DONE | `detections/sigma/` (18 rules), `automation/detect/run_sigma.py`, `detections/tests/` (42 pass), `detections/coverage/` |
+| 8 | Controlled adversary simulation | ✅ DONE | `attack-scenarios/scattered-sable/run.py` (18-step chain), `timeline.json` |
 | 9 | Incident response & DFIR | ✅ DONE | `incident-response/INC-2026-0821-*.md` + `exec-summary.md`, `dfir/investigation-notes.md` + `iocs.csv` |
 | 10 | Purple-team improvement | ✅ DONE | `purple-team/scattered-sable-purpleteam.md` (before/after measured) |
 | 11 | Automation | ✅ DONE | `automation/normalize` + `detect` + `report/metrics.py` + `report/build_report.py`; (future: SOAR playbook) |
@@ -41,7 +41,7 @@
 
 ## Status: ALL 16 PHASES COMPLETE (v1). Ready to push to GitHub.
 - Full pipeline reproduces: `make emulate && make detect && python automation/report/metrics.py && make report`.
-- `make test` (detections) + `pytest appsec/tests` (hardening) all pass (36 tests total).
+- `make test` (detections) + `pytest appsec/tests` (hardening) all pass (42 tests total).
 - **Optional future polish (v2):** SOAR-style triage/enrichment playbook + analyst-minutes-saved metric; a live
   LocalStack cloud scenario; close ATT&CK gaps T1566/T1110/T1114.003; add screen-capture GIFs of detections firing.
 - **Before pushing:** create empty GitHub repo, then `git branch -M main && git remote add origin <url> && git push -u origin main`.
@@ -50,12 +50,12 @@
 ## Metrics (computed from real evidence — metrics/metrics.json)
 | Metric | Baseline | Post-improvement | Source of truth |
 |---|---|---|---|
-| ATT&CK chain detection coverage | 0% | **100% (12/12)** | `metrics/metrics.json` |
-| Attack steps detected | 0/15 | **15/15** | `metrics/metrics.json` |
-| Alerts on the intrusion | 0 | **22** | `evidence/alerts/alerts.jsonl` |
+| ATT&CK chain detection coverage | 0% | **100% (16/16)** | `metrics/metrics.json` |
+| Attack steps detected | 0/18 | **18/18** | `metrics/metrics.json` |
+| Alerts on the intrusion | 0 | **25** | `evidence/alerts/alerts.jsonl` |
 | FP rate on benign baseline | n/a | **0 / 40** | `evidence/alerts/detection-run.txt` |
-| Detection-opportunity window before impact | none | **~6 min** | `metrics/metrics.json` |
-| Detection unit tests | 0 | **32 pass** | `evidence/alerts/pytest-detections.txt` |
+| Detection-opportunity window before impact | none | **~7.2 min** | `metrics/metrics.json` |
+| Detection unit tests | 0 | **42 pass** | `evidence/alerts/pytest-detections.txt` |
 | Critical/High app flaws remediated + retested | 0 | **2 (JWT, prompt-injection) + 6 by rule** | `appsec/tests` (4 pass) |
-| Attack paths eliminated | TBD | TBD | `identity/graph/` (Phase 6, pending) |
+| Attack paths eliminated | 7 | **0 (7 eliminated)** | `identity/graph/attack-paths.json` |
 | Analyst-minutes saved / run | TBD | TBD | automation timing harness (Phase 11, pending) |

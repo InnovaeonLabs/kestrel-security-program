@@ -61,7 +61,7 @@ def main():
             "Intrusion is detectable at initial access (MFA fatigue, KP-0001) "
             f"~{opportunity_window_min} min before the first business-impact action "
             "(bulk export / BEC). In an enterprise this window is where containment happens."),
-        "unit_tests": "32 passed (fires-on-malicious + silent-on-benign for all 15 rules)",
+        "unit_tests": "42 passed (fires-on-malicious + silent-on-benign for all 18 rules + hardening retest)",
         "generated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
     os.makedirs(os.path.dirname(OUT), exist_ok=True)

@@ -58,10 +58,10 @@ def write_matrix(rows):
             seen.add(t)
             lines.append(f"| `{t}` | {r['title']} | {r['id']} | {r['source']} | {r['level']} | ✅ unit |")
     # Known gaps: techniques in the threat model not yet covered (documented, not hidden).
-    gaps = {"T1566": "Phishing (initial access) — modeled, not detected in-lab",
-            "T1195": "Supply-chain compromise — handled by CI gates, not runtime detection",
-            "T1110": "Credential stuffing/brute force — needs velocity rule on login_failure",
-            "T1114.003": "Email forwarding rule — needs Workspace/Graph audit log source"}
+    # T1566/T1110/T1114.003 were closed in v2 (KP-0040/0041/0042); T1195 is intentionally
+    # handled by CI supply-chain gates rather than a runtime detection.
+    gaps = {"T1195": "Supply-chain compromise — handled by CI gates (gitleaks/Semgrep/Checkov/pip-audit), not runtime detection",
+            "T1078.004": "Valid cloud accounts (broad) — partially covered via KP-0030/31; full coverage needs richer CloudTrail baseline"}
     lines += ["", "## Documented coverage gaps (honest)", "", "| ATT&CK | Gap |", "|---|---|"]
     for t, why in gaps.items():
         if t not in seen:

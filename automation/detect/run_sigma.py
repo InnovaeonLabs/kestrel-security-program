@@ -53,6 +53,8 @@ LOGSOURCE_MAP = {  # (product,category,service) hints -> base SQL predicate
     ("", "", "nginx"): "source='nginx'",
     ("", "", "cloudtrail"): "source='cloudtrail'",
     ("", "", "okta"): "source='identity'",
+    ("", "", "saas"): "source='saas'",
+    ("", "", "email"): "source='email'",
     ("identity", "", ""): "source='identity'",
     ("windows", "process_creation", ""): "source='sysmon' AND event_type='process_create'",
     ("windows", "registry_set", ""): "source='sysmon' AND event_type='registry_set'",

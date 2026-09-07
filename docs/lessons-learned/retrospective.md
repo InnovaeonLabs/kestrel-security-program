@@ -2,7 +2,7 @@
 
 ## What went well
 - **One coherent story** (SCATTERED SABLE) tied every discipline together — no disconnected mini-labs.
-- **Testable detections** — the 32 unit tests turn "I wrote rules" into "my detections are verified."
+- **Testable detections** — the 42 unit tests turn "I wrote rules" into "my detections are verified."
 - **Honest constraints** — turning an 8 GB laptop limitation into a SIEM-less design (and documenting the enterprise
   equivalent) demonstrated judgment better than faking a big environment.
 - **Everything reproduces** with `make`, so a skeptic can re-run it.

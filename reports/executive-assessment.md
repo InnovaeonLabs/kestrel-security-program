@@ -17,7 +17,7 @@ tested detections, ran a realistic attack end-to-end, responded to it, fixed the
 |---|---|---|
 | Can we detect an intrusion? | No detections | 100% of the attack's techniques detected |
 | Noise (false alarms) | n/a | 0 on normal activity |
-| Time to detect before impact | none | ~6 minutes of containment window |
+| Time to detect before impact | none | ~7 minutes of containment window |
 | Paths from a stolen laptop to the signing key | 7 | 0 |
 | Cloud misconfigurations caught before deploy | 0 | 41 |
 | Dangerous app flaws fixed & retested | 0 | 2 critical + more by control |

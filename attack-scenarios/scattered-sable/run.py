@@ -59,6 +59,19 @@ def record(step, technique, detection, note):
 
 
 def emit_chain():
+    # 0a) Phishing link click (initial access) -> email source
+    telemetry.emit("email_url_click", outcome="success", actor=VICTIM, src_ip=ATTACKER_IP,
+                   severity="high", technique="T1566", ts_override=_ts(0),
+                   url="https://kestrel-pay-support.example/login", lookalike=True,
+                   newly_registered=True)
+    record(0, "T1566", "KP-0040", "Phishing link click to lookalike domain")
+    _rewrite_source_last(1, "email")
+    # 0b) Credential-stuffing burst against the login endpoint (kestrel-api source)
+    for i in range(12):
+        telemetry.emit("login_failure", outcome="failure", actor="ava.reyes", src_ip=ATTACKER_IP,
+                       severity="low", technique="T1110", ts_override=_ts(3))
+    record(0, "T1110", "KP-0041", "Credential-stuffing burst (12 failed logins)")
+
     # 1) MFA fatigue: three denials in ~30s
     for i in range(3):
         telemetry.emit("user.mfa.push.deny", outcome="failure", actor=VICTIM, src_ip=ATTACKER_IP,
@@ -142,6 +155,11 @@ def emit_chain():
                    object_type="invoice", object_id="42", severity="high", technique="T1114",
                    ts_override=_ts(20), old_last4="1234", new_last4="9990")
     record(14, "T1114", "KP-0015", "Changed invoice #42 payout bank details (BEC)")
+    telemetry.emit("mailbox.rule.create", outcome="success", actor=VICTIM, src_ip=ATTACKER_IP,
+                   severity="high", technique="T1114.003", ts_override=_ts(10),
+                   rule_name="autoforward", forward_external=True, dest="sable@proton.example")
+    record(15, "T1114.003", "KP-0042", "Mailbox forwarding rule to external address")
+    _rewrite_source_last(1, "saas")
     telemetry.emit("copilot_system_prompt_leak", outcome="success", actor="merchant-user",
                    src_ip=ATTACKER_IP, session_id="sable-1", severity="critical", technique="T1552",
                    ts_override=_ts(15), data="system_prompt")

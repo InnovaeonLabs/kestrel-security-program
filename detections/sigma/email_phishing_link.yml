@@ -1,0 +1,22 @@
+title: Phishing Link Click to Lookalike Domain
+id: KP-0040
+status: experimental
+description: A user clicked a link to a newly-registered lookalike domain (credential-harvesting), the initial-access vector for SCATTERED SABLE.
+references:
+  - https://attack.mitre.org/techniques/T1566/002/
+author: Project KESTREL
+date: 2026/09/06
+logsource:
+  service: email
+detection:
+  selection:
+    event_type: email_url_click
+    details.lookalike: true
+  condition: selection
+fields: [actor, src_ip, details]
+falsepositives:
+  - Marketing links to partner lookalike-ish domains (allow-list known-good senders/domains)
+level: high
+tags:
+  - attack.t1566
+  - attack.initial_access

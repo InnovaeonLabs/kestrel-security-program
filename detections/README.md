@@ -4,21 +4,21 @@ Custom, **unit-tested** detections written as portable **Sigma** YAML, compiled 
 normalized telemetry. This is the spine of the whole project.
 
 ## What ships
-- **15 rules** in [`sigma/`](sigma/) across Identity, App/API, Endpoint, Cloud, and LLM.
+- **18 rules** in [`sigma/`](sigma/) across Identity, Email, SaaS, App/API, Endpoint, Cloud, and LLM.
 - A **compiler/runner** ([`../automation/detect/run_sigma.py`](../automation/detect/run_sigma.py)) — a purpose-built
   Sigma-subset engine (+ temporal/threshold aggregation) so it stays dependency-light on an 8 GB host.
-- **32 passing unit tests** ([`tests/`](tests/)) — every rule is asserted to **fire on malicious input** and stay
+- **42 passing unit tests** ([`tests/`](tests/)) — every rule is asserted to **fire on malicious input** and stay
   **silent on benign** input. Evidence: [`../evidence/alerts/pytest-detections.txt`](../evidence/alerts/pytest-detections.txt).
-- An auto-generated **ATT&CK coverage matrix** + **Navigator layer** ([`coverage/`](coverage/)) — 13 techniques
+- An auto-generated **ATT&CK coverage matrix** + **Navigator layer** ([`coverage/`](coverage/)) — 16 techniques
   covered, with **documented gaps** (nothing hidden).
 
 ## Run
 ```bash
 make detect     # normalize -> run all rules -> evidence/alerts/alerts.jsonl
-make test       # pytest: 32 tests, fires-on-malicious + silent-on-benign
+make test       # pytest: 42 tests, fires-on-malicious + silent-on-benign
 python automation/detect/coverage.py   # regenerate the coverage matrix + Navigator layer
 ```
-Current result on baseline+scenario telemetry: **8 alerts / 8 techniques** fire (identity, endpoint, cloud). The
+Current result on baseline+scenario telemetry: **25 alerts / 16 techniques** fire (identity, endpoint, cloud). The
 App/API + LLM rules are intentionally **silent on the benign baseline** (zero false positives) and fire once the API is
 attacked in the Phase 8 emulation — proven now by their unit tests.
 
@@ -40,6 +40,9 @@ attacked in the Phase 8 emulation — proven now by their unit tests.
 | KP-0030 | Secrets Manager Access by Assumed Role | Cloud | T1552.001 | high |
 | KP-0031 | IAM Privilege Escalation (AdministratorAccess) | Cloud | T1548 | critical |
 | KP-0032 | S3 Bucket Policy Made Public | Cloud | T1530 | high |
+| KP-0040 | Phishing Link Click to Lookalike Domain | Email | T1566 | high |
+| KP-0041 | Credential Stuffing / Brute Force | App/API | T1110 | medium |
+| KP-0042 | Mailbox Forwarding Rule to External | SaaS | T1114.003 | high |
 
 ## Detection documentation template
 Each rule's YAML carries the fields a real detection engineer expects, and the story for each is:

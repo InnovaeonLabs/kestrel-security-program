@@ -1,0 +1,22 @@
+title: Mailbox Forwarding Rule to External Address
+id: KP-0042
+status: experimental
+description: An inbox rule was created that forwards mail to an external address - a classic BEC collection/persistence technique.
+references:
+  - https://attack.mitre.org/techniques/T1114/003/
+author: Project KESTREL
+date: 2026/09/06
+logsource:
+  service: saas
+detection:
+  selection:
+    event_type: mailbox.rule.create
+    details.forward_external: true
+  condition: selection
+fields: [actor, src_ip, details]
+falsepositives:
+  - A user setting up legitimate forwarding to a personal address (should be blocked by policy anyway)
+level: high
+tags:
+  - attack.t1114.003
+  - attack.collection

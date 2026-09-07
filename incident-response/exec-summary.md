@@ -18,8 +18,8 @@ A successful version of this attack could have meant **fraudulent transfers, exp
 regulatory penalties (PCI / privacy), and loss of our SOC 2 standing** — the things our customers require to keep using us.
 
 ## How well we responded (measured)
-- Detected at **initial access**, ~**6 minutes before** the first fraud action — enough time to contain.
-- **100%** of the attack's techniques (12/12) were caught by our detections; **22 alerts** fired.
+- Detected at **initial access**, ~**7 minutes before** the first fraud action — enough time to contain.
+- **100%** of the attack's techniques (16/16) were caught by our detections; **25 alerts** fired.
 - **Zero false alarms** on normal activity, so analysts weren't distracted by noise.
 
 ## What we're changing

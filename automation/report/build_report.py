@@ -55,11 +55,11 @@ def build():
     checkov = _checkov_failed()
 
     tiles = [
-        ("Chain detection coverage", f"{m.get('chain_detection_coverage_pct','—')}%", "12/12 techniques"),
+        ("Chain detection coverage", f"{m.get('chain_detection_coverage_pct','—')}%", f"{len(m.get('techniques_detected',[]))} ATT&CK techniques"),
         ("Alerts on the intrusion", m.get("alerts_total", "—"), f"{m.get('rules_fired','—')}/{m.get('rules_total','—')} rules fired"),
         ("False positives (benign)", f"{m.get('false_positives_on_benign_baseline','—')}/{m.get('benign_baseline_events','—')}", "tuned on data"),
         ("Detection window", f"{m.get('detection_opportunity_window_min','—')} min", "before business impact"),
-        ("Detection unit tests", "32 pass", "fires + silent"),
+        ("Detection unit tests", f"{m.get('unit_tests','—').split()[0]} pass", "fires + silent"),
         ("Attack paths to crown jewels", f"{paths.get('total_paths_current','—')} → {paths.get('total_paths_target','—')}", f"{paths.get('attack_paths_eliminated','—')} eliminated"),
         ("Vulnerabilities", f"{vulns} ({p1} P1)", "risk-based priority"),
         ("IaC misconfigs (Checkov)", checkov, "static scan"),
