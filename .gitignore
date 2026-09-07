@@ -1,0 +1,21 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# Lab data / telemetry (regenerated; keep small samples under evidence/)
+range/data/*.db
+range/data/*.sqlite
+*.duckdb
+# Local logs (raw); curated samples live in evidence/
+automation/**/_raw/
+# Secrets — never commit real ones (planted lab secrets are clearly marked)
+.env
+*.pem
+*.key
+!**/lab-*.key
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

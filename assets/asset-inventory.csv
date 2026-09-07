@@ -1,0 +1,21 @@
+asset_id,asset,type,owner,classification,business_criticality,exposure,depends_on,security_requirements,crown_jewel
+AST-001,Payment-signing keys (KMS),Secret/Key,CISO,Restricted,Critical,Internal-only,AWS-KMS;IAM,"Confidentiality+Integrity; HSM/KMS-backed; no export; access logged & alerted",Yes
+AST-002,Production AWS account & IAM,Cloud control plane,Platform Eng Lead,Restricted,Critical,Internet (console/API),Okta-SSO;MFA,"Least-privilege; MFA; CloudTrail; no long-lived keys; SCP guardrails",Yes
+AST-003,Ledger/cardholder database (RDS/Postgres),Data store,Data Eng Lead,Restricted,Critical,Internal (VPC),AWS;IAM;App,"Encryption at rest/in transit; tokenization; access logging; least-privilege",Yes
+AST-004,Kestrel Pay API (payments/invoicing),Application/API,Product Eng Lead,Confidential,Critical,Internet,"AWS;DB;KMS;IdP","AuthN/Z; input validation; rate limiting; WAF; audit logging",Yes
+AST-005,CI/CD pipeline (GitHub Actions),Build/deploy,DevOps Lead,Confidential,High,Internet (SaaS),GitHub;AWS-OIDC,"Signed commits; protected branches; secret scanning; least-priv OIDC; SBOM",Yes
+AST-006,Source code repositories (GitHub org),Source,DevOps Lead,Confidential,High,Internet (SaaS),GitHub-SSO,"SSO+MFA; branch protection; secret scanning; code review",No
+AST-007,Admin & engineer identities (IdP),Identity,IT/Sec,Restricted,Critical,Internet,Okta;Google,"MFA (phishing-resistant); conditional access; session monitoring; JML process",Yes
+AST-008,Service accounts / API tokens,Identity/Secret,Platform Eng,Confidential,High,Mixed,IdP;Secrets-mgr,"Scoped; rotated; no shared creds; usage monitored",No
+AST-009,Customer PII (contacts/business data),Data,Data Eng Lead,Confidential,High,Internal,DB;App,"Least-privilege; access logging; retention limits",No
+AST-010,S3 buckets (statements/exports/backups),Cloud storage,Platform Eng,Confidential,High,"Internal; risk of public misconfig",AWS-IAM,"Block public access; encryption; access logging; versioning",No
+AST-011,Secrets store (Secrets Manager),Secret,Platform Eng,Restricted,Critical,Internal,AWS-IAM;KMS,"Least-privilege; rotation; access alerting; no secrets in code/env dumps",Yes
+AST-012,Employee endpoints (laptops),Endpoint,IT/Sec,Internal,High,Internet (remote),IdP;MDM,"Disk encryption; EDR/telemetry; patching; screen lock; least-admin",No
+AST-013,Google Workspace (email/drive),SaaS,IT/Sec,Confidential,High,Internet,Google-SSO,"MFA; DLP; external-sharing controls; login monitoring; anti-BEC rules",No
+AST-014,Slack workspace,SaaS,IT/Sec,Internal,Medium,Internet,Google-SSO,"SSO; app-install governance; DLP; audit logs",No
+AST-015,Central log/telemetry store,Security data,Sec (you),Confidential,High,Internal,All sources,"Integrity; retention; access control; tamper-evidence; availability for IR",No
+AST-016,Backups & snapshots (DB/config),Backup,Platform Eng,Confidential,High,Internal,AWS,"Encrypted; tested restores; offline/immutable copy; access-controlled",No
+AST-017,DNS & domain registrar,Infra,IT/Sec,Confidential,High,Internet,Registrar-SSO,"Registrar-lock; MFA; DNSSEC; change monitoring (hijack=phishing/BEC risk)",No
+AST-018,Third-party dependencies (PyPI/npm),Supply chain,DevOps Lead,Internal,High,Internet,Package-registries,"Pinning; SCA scanning; SBOM; provenance checks",No
+AST-019,LLM support copilot (API feature),Application/AI,Product Eng,Confidential,Medium,Internet,API;DB;LLM,"Prompt-injection defenses; tool/permission scoping; output filtering; logging",No
+AST-020,Company reputation / SOC2 attestation,Intangible,CEO/CISO,Restricted,Critical,Public,All controls,"Demonstrable, continuously-operating controls with evidence",Yes
