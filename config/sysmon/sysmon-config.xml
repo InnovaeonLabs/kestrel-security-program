@@ -1,0 +1,63 @@
+<!--
+  Kestrel Pay lab Sysmon config (compact, detection-focused).
+  Install (elevated):  sysmon64 -accepteula -i config\sysmon\sysmon-config.xml
+  Update:              sysmon64 -c config\sysmon\sysmon-config.xml
+  This is a lab-tuned subset inspired by community baselines (SwiftOnSecurity/Olaf),
+  scoped to the techniques in the SCATTERED SABLE scenario so the signal-to-noise
+  stays sane on a personal machine. Tune excludes for your own host.
+-->
+<Sysmon schemaversion="4.90">
+  <HashAlgorithms>SHA256</HashAlgorithms>
+  <EventFiltering>
+
+    <!-- Event ID 1: Process creation. Capture encoded/hidden PowerShell, LOLBins. -->
+    <RuleGroup name="proc_create" groupRelation="or">
+      <ProcessCreate onmatch="include">
+        <CommandLine condition="contains any">-enc;-encodedcommand;-nop;-w hidden;-windowstyle hidden;downloadstring;iex;frombase64string</CommandLine>
+        <Image condition="end with">powershell.exe</Image>
+        <Image condition="end with">pwsh.exe</Image>
+        <Image condition="end with">cmd.exe</Image>
+        <Image condition="end with">rundll32.exe</Image>
+        <Image condition="end with">mshta.exe</Image>
+        <Image condition="end with">wscript.exe</Image>
+        <Image condition="end with">cscript.exe</Image>
+        <Image condition="end with">regsvr32.exe</Image>
+        <Image condition="end with">certutil.exe</Image>
+        <Image condition="end with">bitsadmin.exe</Image>
+      </ProcessCreate>
+    </RuleGroup>
+
+    <!-- Event ID 3: Network connection. Focus on suspicious binaries reaching out. -->
+    <RuleGroup name="net_connect" groupRelation="or">
+      <NetworkConnect onmatch="include">
+        <Image condition="end with">powershell.exe</Image>
+        <Image condition="end with">rundll32.exe</Image>
+        <Image condition="end with">mshta.exe</Image>
+        <Image condition="end with">regsvr32.exe</Image>
+      </NetworkConnect>
+    </RuleGroup>
+
+    <!-- Event ID 11: File create. Session-token / credential-file drops. -->
+    <RuleGroup name="file_create" groupRelation="or">
+      <FileCreate onmatch="include">
+        <TargetFilename condition="contains any">\AppData\Roaming\;.tok;\Temp\;.dll;.ps1</TargetFilename>
+      </FileCreate>
+    </RuleGroup>
+
+    <!-- Event ID 13: Registry value set. Run-key / persistence. -->
+    <RuleGroup name="reg_set" groupRelation="or">
+      <RegistryEvent onmatch="include">
+        <TargetObject condition="contains any">\CurrentVersion\Run;\CurrentVersion\RunOnce;\Windows\CurrentVersion\Winlogon</TargetObject>
+      </RegistryEvent>
+    </RuleGroup>
+
+    <!-- Event ID 22: DNS query. Beacon / C2 lookups. -->
+    <RuleGroup name="dns" groupRelation="or">
+      <DnsQuery onmatch="include">
+        <Image condition="end with">powershell.exe</Image>
+        <Image condition="end with">rundll32.exe</Image>
+      </DnsQuery>
+    </RuleGroup>
+
+  </EventFiltering>
+</Sysmon>

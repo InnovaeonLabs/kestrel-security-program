@@ -1,0 +1,8 @@
+[
+  {"published":"2026-08-21T13:40:00Z","eventType":"user.session.start","actor":"leo.kim","ip":"203.0.113.11","city":"Austin","country":"US","outcome":"success","mfa":"push","technique":"T1078"},
+  {"published":"2026-08-21T13:55:10Z","eventType":"user.mfa.push.deny","actor":"leo.kim","ip":"45.77.0.10","city":"Amsterdam","country":"NL","outcome":"failure","reason":"user_denied","technique":"T1621"},
+  {"published":"2026-08-21T13:55:22Z","eventType":"user.mfa.push.deny","actor":"leo.kim","ip":"45.77.0.10","city":"Amsterdam","country":"NL","outcome":"failure","reason":"user_denied","technique":"T1621"},
+  {"published":"2026-08-21T13:55:39Z","eventType":"user.mfa.push.deny","actor":"leo.kim","ip":"45.77.0.10","city":"Amsterdam","country":"NL","outcome":"failure","reason":"user_denied","technique":"T1621"},
+  {"published":"2026-08-21T13:56:02Z","eventType":"user.session.start","actor":"leo.kim","ip":"45.77.0.10","city":"Amsterdam","country":"NL","outcome":"success","mfa":"push","technique":"T1621"},
+  {"published":"2026-08-21T14:01:30Z","eventType":"app.oauth.token.grant","actor":"leo.kim","ip":"45.77.0.10","city":"Amsterdam","country":"NL","outcome":"success","technique":"T1550.001"}
+]
