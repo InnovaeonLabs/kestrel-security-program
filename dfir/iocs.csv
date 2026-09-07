@@ -1,0 +1,12 @@
+ioc_type,value,context,mitre,confidence,action
+ipv4,45.77.0.10,Attacker source IP (NL) - MFA denials, OAuth grant, API abuse, C2 beacon,T1071,high,block
+domain,cdn.sable-c2.example,C2 domain resolved by powershell on KP-LAPTOP-07,T1071.004,high,block/sinkhole
+hostname,KP-LAPTOP-07,Compromised endpoint (leo.kim),T1059.001,high,isolate/reimage
+account,leo.kim,Compromised engineer identity,T1078,high,disable/reset-MFA
+registry,HKCU\Software\Microsoft\Windows\CurrentVersion\Run\Updater,Run-key persistence value,T1547.001,high,remove
+cmdline_pattern,powershell -nop -w hidden -enc,Encoded/hidden PowerShell stager,T1059.001,medium,hunt
+file,C:\Users\leo.kim\AppData\Roaming\kp_session.tok,Stolen session-token artifact,T1539,medium,collect
+aws_secret,prod/payments/signing-key,Signing key read via task role -> ROTATE,T1552.001,high,rotate
+aws_policy,arn:aws:iam::aws:policy/AdministratorAccess,Attached for privilege escalation,T1548,high,detach
+aws_bucket,kestrel-statements-prod,Made public via PutBucketPolicy,T1530,high,revert-policy
+jwt,alg=none,Forged token accepted by API,T1550.001,high,rotate-secret/patch

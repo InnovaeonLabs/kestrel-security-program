@@ -20,15 +20,15 @@
 | 3 | Logging / telemetry foundation | ✅ DONE | `automation/normalize/normalize.py` (→DuckDB), `config/sysmon/`, `scripts/export-windows-telemetry.ps1` |
 | 4 | Baseline security controls | ⬜ TODO | `config/`, hardening docs (partly done via KESTREL_HARDENED toggle) |
 | 5 | Vulnerability & exposure assessment | ⬜ TODO | `vulnerability-management/` |
-| 6 | App / API / Cloud / Identity security | ⬜ TODO | `appsec/`, `cloud-security/`, `identity/` |
+| 6 | App / API / Cloud / Identity security | 🟡 PARTIAL | `appsec/` (8 findings + retest, 4 tests pass); cloud/identity TODO |
 | 7 | Detection engineering | ✅ DONE | `detections/sigma/` (15 rules), `automation/detect/run_sigma.py`, `detections/tests/` (32 tests pass), `detections/coverage/` |
-| 8 | Controlled adversary simulation | ⬜ TODO | `attack-scenarios/scattered-sable/` |
-| 9 | Incident response & DFIR | ⬜ TODO | `incident-response/`, `dfir/` |
-| 10 | Purple-team improvement | ⬜ TODO | `purple-team/` |
-| 11 | Automation | ⬜ TODO | `automation/` |
+| 8 | Controlled adversary simulation | ✅ DONE | `attack-scenarios/scattered-sable/run.py` (15-step chain), `timeline.json` |
+| 9 | Incident response & DFIR | ✅ DONE | `incident-response/INC-2026-0821-*.md` + `exec-summary.md`, `dfir/investigation-notes.md` + `iocs.csv` |
+| 10 | Purple-team improvement | ✅ DONE | `purple-team/scattered-sable-purpleteam.md` (before/after measured) |
+| 11 | Automation | 🟡 PARTIAL | `automation/normalize`, `automation/detect`, `automation/report/metrics.py`; enrichment/triage/report-gen TODO |
 | 12 | GRC / risk / architecture review | ⬜ TODO | `docs/risk/`, `docs/architecture/target-state.md` |
 | 13 | Resilience & recovery | ⬜ TODO | `resilience/` |
-| 14 | Measurement & posture comparison | ⬜ TODO | `metrics/` |
+| 14 | Measurement & posture comparison | 🟡 PARTIAL | `metrics/metrics.json` (computed); dashboard TODO |
 | 15 | Portfolio / GitHub packaging | ⬜ TODO | `README.md`, `reports/` |
 | 16 | Resume / LinkedIn / interview prep | ⬜ TODO | `reports/career/` |
 
@@ -46,12 +46,15 @@
 - Detection pipeline is live: `make detect` → 8 alerts/8 techniques on current data; `make test` → 32 pass.
 - Coverage: 13 techniques with tested detections; documented gaps in `detections/coverage/coverage-matrix.md`.
 
-## Metric placeholders (fill from real evidence — never invent)
+## Metrics (computed from real evidence — metrics/metrics.json)
 | Metric | Baseline | Post-improvement | Source of truth |
 |---|---|---|---|
-| ATT&CK technique detection coverage (scenario) | TBD | TBD | `metrics/coverage.json` from `automation/detect` |
-| MTTD (SCATTERED SABLE) | TBD | TBD | `incident-response/timeline.csv` |
-| FP rate (top-5 detections) | TBD | TBD | alert counts pre/post tuning |
-| Critical/High vulns remediated | TBD | TBD | `vulnerability-management/register.csv` |
-| Attack paths eliminated | TBD | TBD | `identity/graph/` before/after |
-| Analyst-minutes saved / run | TBD | TBD | automation timing harness |
+| ATT&CK chain detection coverage | 0% | **100% (12/12)** | `metrics/metrics.json` |
+| Attack steps detected | 0/15 | **15/15** | `metrics/metrics.json` |
+| Alerts on the intrusion | 0 | **22** | `evidence/alerts/alerts.jsonl` |
+| FP rate on benign baseline | n/a | **0 / 40** | `evidence/alerts/detection-run.txt` |
+| Detection-opportunity window before impact | none | **~6 min** | `metrics/metrics.json` |
+| Detection unit tests | 0 | **32 pass** | `evidence/alerts/pytest-detections.txt` |
+| Critical/High app flaws remediated + retested | 0 | **2 (JWT, prompt-injection) + 6 by rule** | `appsec/tests` (4 pass) |
+| Attack paths eliminated | TBD | TBD | `identity/graph/` (Phase 6, pending) |
+| Analyst-minutes saved / run | TBD | TBD | automation timing harness (Phase 11, pending) |

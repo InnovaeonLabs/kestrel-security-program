@@ -35,8 +35,14 @@ def emit(event_type: str, *, action: str = "", outcome: str = "success",
          session_id: str = "-", http_method: str = "-", http_path: str = "-",
          http_status: int = 0, object_type: str = "-", object_id: str = "-",
          owner: str = "-", severity: str = "info", technique: str = "-",
-         **details) -> dict:
-    """Write one normalized telemetry event and return it."""
+         host: str = "-", process: str = "-", parent_process: str = "-",
+         command_line: str = "-", **details) -> dict:
+    """Write one normalized telemetry event and return it.
+
+    Endpoint fields (host/process/parent_process/command_line) are part of the
+    shared normalized schema so cross-source tooling (e.g. the adversary emulator)
+    can emit endpoint-tier events through the same path.
+    """
     event = {
         "ts": _now(),
         "source": SOURCE,
@@ -56,6 +62,10 @@ def emit(event_type: str, *, action: str = "", outcome: str = "success",
         "owner": owner,
         "severity": severity,
         "technique": technique,
+        "host": host,
+        "process": process,
+        "parent_process": parent_process,
+        "command_line": command_line,
         "details": details,
     }
     try:

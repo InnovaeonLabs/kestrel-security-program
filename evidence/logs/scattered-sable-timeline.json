@@ -1,0 +1,107 @@
+[
+  {
+    "step": 1,
+    "ts": "2026-08-21T13:55:36Z",
+    "technique": "T1621",
+    "detection": "KP-0001",
+    "note": "MFA push-bombing against leo.kim from NL"
+  },
+  {
+    "step": 2,
+    "ts": "2026-08-21T13:55:56Z",
+    "technique": "T1550.001",
+    "detection": "KP-0002",
+    "note": "OAuth token granted after coerced MFA approval"
+  },
+  {
+    "step": 3,
+    "ts": "2026-08-21T13:56:26Z",
+    "technique": "T1059.001",
+    "detection": "KP-0020",
+    "note": "Encoded PowerShell stager via Teams lure"
+  },
+  {
+    "step": 4,
+    "ts": "2026-08-21T13:56:32Z",
+    "technique": "T1071",
+    "detection": "KP-0021",
+    "note": "rundll32 beacon to sable-c2.example (45.77.0.10)"
+  },
+  {
+    "step": 5,
+    "ts": "2026-08-21T13:57:12Z",
+    "technique": "T1547.001",
+    "detection": "KP-0022",
+    "note": "Run-key persistence 'Updater'"
+  },
+  {
+    "step": 6,
+    "ts": "2026-08-21T13:58:12Z",
+    "technique": "T1550.001",
+    "detection": "KP-0010",
+    "note": "Forged JWT (alg=none) accepted"
+  },
+  {
+    "step": 7,
+    "ts": "2026-08-21T13:59:16Z",
+    "technique": "T1190",
+    "detection": "KP-0012",
+    "note": "Enumerated 8 payouts with missing object-level authz"
+  },
+  {
+    "step": 8,
+    "ts": "2026-08-21T13:59:31Z",
+    "technique": "T1190",
+    "detection": "KP-0011",
+    "note": "SQLi UNION to read tokenized cards"
+  },
+  {
+    "step": 9,
+    "ts": "2026-08-21T13:59:51Z",
+    "technique": "T1190",
+    "detection": "KP-0013",
+    "note": "SSRF to IMDS to steal task-role creds"
+  },
+  {
+    "step": 10,
+    "ts": "2026-08-21T14:00:21Z",
+    "technique": "T1552.001",
+    "detection": "KP-0030",
+    "note": "Read prod payment-signing secret via task role"
+  },
+  {
+    "step": 11,
+    "ts": "2026-08-21T14:00:46Z",
+    "technique": "T1548",
+    "detection": "KP-0031",
+    "note": "Attached AdministratorAccess (privilege escalation)"
+  },
+  {
+    "step": 12,
+    "ts": "2026-08-21T14:01:06Z",
+    "technique": "T1530",
+    "detection": "KP-0032",
+    "note": "Made statements bucket public for staging/exfil"
+  },
+  {
+    "step": 13,
+    "ts": "2026-08-21T14:01:36Z",
+    "technique": "T1074",
+    "detection": "KP-0014",
+    "note": "Bulk export of 80 tokenized card records"
+  },
+  {
+    "step": 14,
+    "ts": "2026-08-21T14:01:56Z",
+    "technique": "T1114",
+    "detection": "KP-0015",
+    "note": "Changed invoice #42 payout bank details (BEC)"
+  },
+  {
+    "step": 15,
+    "ts": "2026-08-21T14:02:11Z",
+    "technique": "T1552",
+    "detection": "KP-0016",
+    "note": "Prompt injection leaked copilot system prompt (key alias)"
+  }
+]
