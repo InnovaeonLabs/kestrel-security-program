@@ -41,9 +41,10 @@
 
 ## Status: ALL 16 PHASES COMPLETE (v1). Ready to push to GitHub.
 - Full pipeline reproduces: `make emulate && make detect && python automation/report/metrics.py && make report`.
-- `make test` (detections) + `pytest appsec/tests` (hardening) all pass (42 tests total).
-- **Optional future polish (v2):** SOAR-style triage/enrichment playbook + analyst-minutes-saved metric; a live
-  LocalStack cloud scenario; close ATT&CK gaps T1566/T1110/T1114.003; add screen-capture GIFs of detections firing.
+- `make test` (detections) + `pytest appsec/tests` (hardening) all pass (42 tests total); `make triage` + `make report` regenerate case/metrics/dashboard/SVG.
+- **v2 COMPLETE:** closed ATT&CK gaps (T1566/T1110/T1114.003 → 18 rules/16 techniques/42 tests); SOAR triage playbook
+  + threat-intel enrichment + analyst-minutes metric (~120/run); data-driven attack-chain SVG; optional LocalStack
+  live-cloud scenario (code, syntax-checked); benign malware-analysis component + YARA rule.
 - **Before pushing:** create empty GitHub repo, then `git branch -M main && git remote add origin <url> && git push -u origin main`.
   CI (`.github/workflows/ci.yml`) runs on first push; lab decoys are allowlisted in `.gitleaks.toml`.
 
