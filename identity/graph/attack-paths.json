@@ -1,0 +1,28 @@
+{
+  "entry": "user:leo.kim",
+  "crown_jewels": [
+    "secret:signing-key",
+    "cloud:aws-admin",
+    "data:ledger"
+  ],
+  "paths_current": {
+    "secret:signing-key": 3,
+    "cloud:aws-admin": 2,
+    "data:ledger": 2
+  },
+  "paths_target": {
+    "secret:signing-key": 0,
+    "cloud:aws-admin": 0,
+    "data:ledger": 0
+  },
+  "total_paths_current": 7,
+  "total_paths_target": 0,
+  "attack_paths_eliminated": 7,
+  "example_current_path_to_signing_key": [
+    "user:leo.kim",
+    "host:KP-LAPTOP-07",
+    "role:kestrel-api-task",
+    "cloud:aws-admin",
+    "secret:signing-key"
+  ]
+}
