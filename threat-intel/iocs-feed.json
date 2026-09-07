@@ -1,0 +1,13 @@
+{
+  "feed": "kestrel-ti-internal",
+  "description": "Curated threat-intel feed used to enrich alerts. Lab-internal: combines IOCs observed in the SCATTERED SABLE intrusion with a few well-known test indicators. Reputation drives triage scoring.",
+  "updated": "2026-08-22",
+  "indicators": [
+    {"type": "ipv4", "value": "45.77.0.10", "reputation": "malicious", "actor": "SCATTERED SABLE", "confidence": 90, "tags": ["c2", "eCrime"], "first_seen": "2026-08-21"},
+    {"type": "domain", "value": "cdn.sable-c2.example", "reputation": "malicious", "actor": "SCATTERED SABLE", "confidence": 85, "tags": ["c2"]},
+    {"type": "domain", "value": "kestrel-pay-support.example", "reputation": "malicious", "actor": "SCATTERED SABLE", "confidence": 80, "tags": ["phishing", "lookalike"]},
+    {"type": "email", "value": "sable@proton.example", "reputation": "suspicious", "actor": "SCATTERED SABLE", "confidence": 70, "tags": ["bec", "exfil"]},
+    {"type": "hash", "value": "44d88612fea8a8f36de82e1278abb02f", "reputation": "test", "actor": "-", "confidence": 100, "tags": ["eicar", "benign-test"]},
+    {"type": "ipv4", "value": "185.220.101.1", "reputation": "suspicious", "actor": "-", "confidence": 60, "tags": ["tor-exit"]}
+  ]
+}

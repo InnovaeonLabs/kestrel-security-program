@@ -1,0 +1,15 @@
+{
+  "alerts_triaged": 25,
+  "clusters": 2,
+  "primary_cluster_key": "45.77.0.10",
+  "primary_cluster_size": 21,
+  "p1_after_triage": 11,
+  "automated_runtime_sec": 0.01,
+  "assumptions": {
+    "manual_min_per_alert": 4.0,
+    "manual_case_min": 20.0
+  },
+  "manual_equivalent_min": 120.0,
+  "analyst_minutes_saved_per_run": 120.0,
+  "generated": "2026-09-07T02:43:30Z"
+}

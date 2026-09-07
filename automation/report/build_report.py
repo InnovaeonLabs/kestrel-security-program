@@ -49,6 +49,7 @@ LEVEL_COLOR = {"critical": "#b3123b", "high": "#d1495b", "medium": "#e0a800", "l
 
 def build():
     m = _read_json("metrics/metrics.json")
+    auto = _read_json("metrics/automation-metrics.json")
     alerts = _read_lines("evidence/alerts/alerts.jsonl")
     paths = _read_json("identity/graph/attack-paths.json")
     vulns, p1 = _vuln_stats()
@@ -63,6 +64,7 @@ def build():
         ("Attack paths to crown jewels", f"{paths.get('total_paths_current','—')} → {paths.get('total_paths_target','—')}", f"{paths.get('attack_paths_eliminated','—')} eliminated"),
         ("Vulnerabilities", f"{vulns} ({p1} P1)", "risk-based priority"),
         ("IaC misconfigs (Checkov)", checkov, "static scan"),
+        ("Analyst-minutes saved / run", f"~{auto.get('analyst_minutes_saved_per_run','—')}", "SOAR triage + enrich"),
     ]
 
     tile_html = "".join(

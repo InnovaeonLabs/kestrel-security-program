@@ -33,6 +33,9 @@ emulate:
 detect:
 	$(PY) automation/detect/run_sigma.py
 
+triage:
+	$(PY) automation/soar/triage.py
+
 report:
 	$(PY) automation/report/build_report.py
 

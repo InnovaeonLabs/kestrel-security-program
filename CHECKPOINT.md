@@ -58,4 +58,4 @@
 | Detection unit tests | 0 | **42 pass** | `evidence/alerts/pytest-detections.txt` |
 | Critical/High app flaws remediated + retested | 0 | **2 (JWT, prompt-injection) + 6 by rule** | `appsec/tests` (4 pass) |
 | Attack paths eliminated | 7 | **0 (7 eliminated)** | `identity/graph/attack-paths.json` |
-| Analyst-minutes saved / run | TBD | TBD | automation timing harness (Phase 11, pending) |
+| Analyst-minutes saved / run | 0 | **~120 (stated assumptions)** | `metrics/automation-metrics.json` |
