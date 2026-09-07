@@ -4,7 +4,11 @@
 > fintech (**Kestrel Pay, Inc.**) — end to end, on a single 8 GB laptop, for **$0** — using a SIEM-less,
 > **detection-as-code** architecture. Real telemetry, tested detections, a full incident, and before/after metrics.
 
-![status](https://img.shields.io/badge/status-in%20progress-yellow) ![cost](https://img.shields.io/badge/cost-%240-brightgreen) ![stack](https://img.shields.io/badge/stack-Python%20%7C%20Docker%20%7C%20Sigma%20%7C%20DuckDB%20%7C%20Terraform-blue) ![framework](https://img.shields.io/badge/mapped%20to-MITRE%20ATT%26CK%20%7C%20NIST%20CSF%202.0%20%7C%20CIS%20v8-orange)
+![status](https://img.shields.io/badge/status-complete-brightgreen) ![cost](https://img.shields.io/badge/cost-%240-brightgreen) ![tests](https://img.shields.io/badge/detection%20tests-42%20passing-brightgreen) ![stack](https://img.shields.io/badge/stack-Python%20%7C%20Docker%20%7C%20Sigma%20%7C%20DuckDB%20%7C%20Terraform-blue) ![framework](https://img.shields.io/badge/mapped%20to-MITRE%20ATT%26CK%20%7C%20NIST%20CSF%202.0%20%7C%20CIS%20v8-orange)
+
+![Attack chain, detected end to end](dashboard/attack-chain.svg)
+
+*The emulated SCATTERED SABLE intrusion — every step mapped to an ATT&CK technique and the tested detection that caught it (generated from real data by `make report`).*
 
 ---
 

@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 762" font-family="system-ui,Segoe UI,Roboto,sans-serif">
+<rect x="0" y="0" width="1080" height="762" rx="14" fill="#ffffff" stroke="#e6e8ec"/>
+<text x="24" y="44" font-size="22" font-weight="700" fill="#1a1d24">SCATTERED SABLE — attack chain, detected end to end</text>
+<text x="24" y="70" font-size="13" fill="#5b6470">Kestrel Pay · each step maps to a MITRE ATT&amp;CK technique and the tested detection that caught it</text>
+<rect x="24" y="84" width="122" height="24" rx="12" fill="#2ca25f"/>
+<text x="85" y="100" font-size="12" fill="#fff" text-anchor="middle" font-weight="600">100.0% coverage</text>
+<rect x="153.5" y="84" width="70" height="24" rx="12" fill="#1982c4"/>
+<text x="189" y="100" font-size="12" fill="#fff" text-anchor="middle" font-weight="600">18 steps</text>
+<rect x="231.9" y="84" width="78" height="24" rx="12" fill="#6a4c93"/>
+<text x="271" y="100" font-size="12" fill="#fff" text-anchor="middle" font-weight="600">25 alerts</text>
+<rect x="317.6" y="84" width="136" height="24" rx="12" fill="#4c9a2a"/>
+<text x="386" y="100" font-size="12" fill="#fff" text-anchor="middle" font-weight="600">0 false positives</text>
+<rect x="461.70000000000005" y="84" width="122" height="24" rx="12" fill="#e0a800"/>
+<text x="522" y="100" font-size="12" fill="#fff" text-anchor="middle" font-weight="600">~7.2 min window</text>
+<line x1="150" y1="112" x2="150" y2="715.0" stroke="#d7dbe0" stroke-width="2"/>
+<text x="40" y="124" font-size="11" fill="#8a929c" text-anchor="end">13:55</text>
+<circle cx="150" cy="120" r="6" fill="#6a4c93" stroke="#fff" stroke-width="2"/>
+<rect x="176" y="110" width="96" height="20" rx="5" fill="#6a4c93"/>
+<text x="224" y="124" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">T1566</text>
+<text x="300" y="124" font-size="11" fill="#2ca25f" font-weight="700">KP-0040</text>
+<text x="430" y="124" font-size="12.5" fill="#2b3038">Phishing link click to lookalike domain</text>
+<text x="40" y="158" font-size="11" fill="#8a929c" text-anchor="end">13:55</text>
+<circle cx="150" cy="154" r="6" fill="#6a4c93" stroke="#fff" stroke-width="2"/>
+<rect x="176" y="144" width="96" height="20" rx="5" fill="#6a4c93"/>
+<text x="224" y="158" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">T1110</text>
+<text x="300" y="158" font-size="11" fill="#2ca25f" font-weight="700">KP-0041</text>
+<text x="430" y="158" font-size="12.5" fill="#2b3038">Credential-stuffing burst (12 failed logins)</text>
+<text x="40" y="192" font-size="11" fill="#8a929c" text-anchor="end">13:56</text>
+<circle cx="150" cy="188" r="6" fill="#1982c4" stroke="#fff" stroke-width="2"/>
+<rect x="176" y="178" width="96" height="20" rx="5" fill="#1982c4"/>
+<text x="224" y="192" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">T1621</text>
+<text x="300" y="192" font-size="11" fill="#2ca25f" font-weight="700">KP-0001</text>
+<text x="430" y="192" font-size="12.5" fill="#2b3038">MFA push-bombing against leo.kim from NL</text>
+<text x="40" y="226" font-size="11" fill="#8a929c" text-anchor="end">13:56</text>
+<circle cx="150" cy="222" r="6" fill="#1982c4" stroke="#fff" stroke-width="2"/>
+<rect x="176" y="212" width="96" height="20" rx="5" fill="#1982c4"/>
+<text x="224" y="226" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">T1550.001</text>
+<text x="300" y="226" font-size="11" fill="#2ca25f" font-weight="700">KP-0002</text>
+<text x="430" y="226" font-size="12.5" fill="#2b3038">OAuth token granted after coerced MFA approval</text>
+<text x="40" y="260" font-size="11" fill="#8a929c" text-anchor="end">13:57</text>
+<circle cx="150" cy="256" r="6" fill="#ff924c" stroke="#fff" stroke-width="2"/>
+<rect x="176" y="246" width="96" height="20" rx="5" fill="#ff924c"/>
+<text x="224" y="260" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">T1059.001</text>
+<text x="300" y="260" font-size="11" fill="#2ca25f" font-weight="700">KP-0020</text>
+<text x="430" y="260" font-size="12.5" fill="#2b3038">Encoded PowerShell stager via Teams lure</text>
+<text x="40" y="294" font-size="11" fill="#8a929c" text-anchor="end">13:57</text>
+<circle cx="150" cy="290" r="6" fill="#ff924c" stroke="#fff" stroke-width="2"/>
+<rect x="176" y="280" width="96" height="20" rx="5" fill="#ff924c"/>
+<text x="224" y="294" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">T1071</text>
+<text x="300" y="294" font-size="11" fill="#2ca25f" font-weight="700">KP-0021</text>
+<text x="430" y="294" font-size="12.5" fill="#2b3038">rundll32 beacon to sable-c2.example (45.77.0.10)</text>
+<text x="40" y="328" font-size="11" fill="#8a929c" text-anchor="end">13:57</text>
+<circle cx="150" cy="324" r="6" fill="#ff924c" stroke="#fff" stroke-width="2"/>
+<rect x="176" y="314" width="96" height="20" rx="5" fill="#ff924c"/>
+<text x="224" y="328" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">T1547.001</text>
+<text x="300" y="328" font-size="11" fill="#2ca25f" font-weight="700">KP-0022</text>
+<text x="430" y="328" font-size="12.5" fill="#2b3038">Run-key persistence 'Updater'</text>
+<text x="40" y="362" font-size="11" fill="#8a929c" text-anchor="end">13:58</text>
+<circle cx="150" cy="358" r="6" fill="#1982c4" stroke="#fff" stroke-width="2"/>
+<rect x="176" y="348" width="96" height="20" rx="5" fill="#1982c4"/>
+<text x="224" y="362" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">T1550.001</text>
+<text x="300" y="362" font-size="11" fill="#2ca25f" font-weight="700">KP-0010</text>
+<text x="430" y="362" font-size="12.5" fill="#2b3038">Forged JWT (alg=none) accepted</text>
+<text x="40" y="396" font-size="11" fill="#8a929c" text-anchor="end">13:59</text>
+<circle cx="150" cy="392" r="6" fill="#d1495b" stroke="#fff" stroke-width="2"/>
+<rect x="176" y="382" width="96" height="20" rx="5" fill="#d1495b"/>
+<text x="224" y="396" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">T1190</text>
+<text x="300" y="396" font-size="11" fill="#2ca25f" font-weight="700">KP-0012</text>
+<text x="430" y="396" font-size="12.5" fill="#2b3038">Enumerated 8 payouts with missing object-level authz</text>
+<text x="40" y="430" font-size="11" fill="#8a929c" text-anchor="end">14:00</text>
+<circle cx="150" cy="426" r="6" fill="#d1495b" stroke="#fff" stroke-width="2"/>
+<rect x="176" y="416" width="96" height="20" rx="5" fill="#d1495b"/>
+<text x="224" y="430" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">T1190</text>
+<text x="300" y="430" font-size="11" fill="#2ca25f" font-weight="700">KP-0011</text>
+<text x="430" y="430" font-size="12.5" fill="#2b3038">SQLi UNION to read tokenized cards</text>
+<text x="40" y="464" font-size="11" fill="#8a929c" text-anchor="end">14:00</text>
+<circle cx="150" cy="460" r="6" fill="#d1495b" stroke="#fff" stroke-width="2"/>
+<rect x="176" y="450" width="96" height="20" rx="5" fill="#d1495b"/>
+<text x="224" y="464" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">T1190</text>
+<text x="300" y="464" font-size="11" fill="#2ca25f" font-weight="700">KP-0013</text>
+<text x="430" y="464" font-size="12.5" fill="#2b3038">SSRF to IMDS to steal task-role creds</text>
+<text x="40" y="498" font-size="11" fill="#8a929c" text-anchor="end">14:00</text>
+<circle cx="150" cy="494" r="6" fill="#b3123b" stroke="#fff" stroke-width="2"/>
+<rect x="176" y="484" width="96" height="20" rx="5" fill="#b3123b"/>
+<text x="224" y="498" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">T1552.001</text>
+<text x="300" y="498" font-size="11" fill="#2ca25f" font-weight="700">KP-0030</text>
+<text x="430" y="498" font-size="12.5" fill="#2b3038">Read prod payment-signing secret via task role</text>
+<text x="40" y="532" font-size="11" fill="#8a929c" text-anchor="end">14:01</text>
+<circle cx="150" cy="528" r="6" fill="#b3123b" stroke="#fff" stroke-width="2"/>
+<rect x="176" y="518" width="96" height="20" rx="5" fill="#b3123b"/>
+<text x="224" y="532" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">T1548</text>
+<text x="300" y="532" font-size="11" fill="#2ca25f" font-weight="700">KP-0031</text>
+<text x="430" y="532" font-size="12.5" fill="#2b3038">Attached AdministratorAccess (privilege escalation)</text>
+<text x="40" y="566" font-size="11" fill="#8a929c" text-anchor="end">14:01</text>
+<circle cx="150" cy="562" r="6" fill="#b3123b" stroke="#fff" stroke-width="2"/>
+<rect x="176" y="552" width="96" height="20" rx="5" fill="#b3123b"/>
+<text x="224" y="566" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">T1530</text>
+<text x="300" y="566" font-size="11" fill="#2ca25f" font-weight="700">KP-0032</text>
+<text x="430" y="566" font-size="12.5" fill="#2b3038">Made statements bucket public for staging/exfil</text>
+<text x="40" y="600" font-size="11" fill="#8a929c" text-anchor="end">14:02</text>
+<circle cx="150" cy="596" r="6" fill="#e0a800" stroke="#fff" stroke-width="2"/>
+<rect x="176" y="586" width="96" height="20" rx="5" fill="#e0a800"/>
+<text x="224" y="600" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">T1074</text>
+<text x="300" y="600" font-size="11" fill="#2ca25f" font-weight="700">KP-0014</text>
+<text x="430" y="600" font-size="12.5" fill="#2b3038">Bulk export of 80 tokenized card records</text>
+<text x="40" y="634" font-size="11" fill="#8a929c" text-anchor="end">14:02</text>
+<circle cx="150" cy="630" r="6" fill="#e0a800" stroke="#fff" stroke-width="2"/>
+<rect x="176" y="620" width="96" height="20" rx="5" fill="#e0a800"/>
+<text x="224" y="634" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">T1114</text>
+<text x="300" y="634" font-size="11" fill="#2ca25f" font-weight="700">KP-0015</text>
+<text x="430" y="634" font-size="12.5" fill="#2b3038">Changed invoice #42 payout bank details (BEC)</text>
+<text x="40" y="668" font-size="11" fill="#8a929c" text-anchor="end">14:02</text>
+<circle cx="150" cy="664" r="6" fill="#e0a800" stroke="#fff" stroke-width="2"/>
+<rect x="176" y="654" width="96" height="20" rx="5" fill="#e0a800"/>
+<text x="224" y="668" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">T1114.003</text>
+<text x="300" y="668" font-size="11" fill="#2ca25f" font-weight="700">KP-0042</text>
+<text x="430" y="668" font-size="12.5" fill="#2b3038">Mailbox forwarding rule to external address</text>
+<text x="40" y="702" font-size="11" fill="#8a929c" text-anchor="end">14:02</text>
+<circle cx="150" cy="698" r="6" fill="#b3123b" stroke="#fff" stroke-width="2"/>
+<rect x="176" y="688" width="96" height="20" rx="5" fill="#b3123b"/>
+<text x="224" y="702" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">T1552</text>
+<text x="300" y="702" font-size="11" fill="#2ca25f" font-weight="700">KP-0016</text>
+<text x="430" y="702" font-size="12.5" fill="#2b3038">Prompt injection leaked copilot system prompt (key alias)</text>
+<text x="24" y="750" font-size="11" fill="#8a929c">Generated from attack-scenarios/scattered-sable/timeline.json · Project KESTREL (fictional)</text>
+</svg>
