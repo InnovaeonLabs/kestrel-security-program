@@ -1,0 +1,37 @@
+# Kestrel Pay range. Designed for an 8 GB host: bring ONE profile up at a time.
+#   docker compose up kestrel-api nginx            # default lightweight (SQLite)
+#   docker compose --profile pg up                 # DB-heavy scenario (Postgres)
+# Tear down with: docker compose down
+services:
+  kestrel-api:
+    build: ./range/kestrel-api
+    environment:
+      KESTREL_HARDENED: "${KESTREL_HARDENED:-0}"   # 0=vulnerable, 1=remediated (retest)
+      KESTREL_LOG_DIR: /var/log/kestrel
+      KESTREL_SEED: "1"
+    volumes:
+      - ./range/data/logs:/var/log/kestrel          # telemetry lands on the host as data
+      - ./range/data/db:/app/data
+    # Modest caps so it can never starve the host.
+    mem_limit: 384m
+    cpus: "0.75"
+    expose: ["8080"]
+
+  nginx:
+    image: nginx:1.27-alpine
+    depends_on: [kestrel-api]
+    ports: ["8080:80"]
+    volumes:
+      - ./range/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./range/data/logs:/var/log/nginx
+    mem_limit: 64m
+
+  # Optional heavier DB, only with: --profile pg
+  postgres:
+    image: postgres:16-alpine
+    profiles: ["pg"]
+    environment:
+      POSTGRES_PASSWORD: lab-only-not-a-secret
+      POSTGRES_DB: kestrel
+    mem_limit: 256m
+    expose: ["5432"]
