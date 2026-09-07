@@ -45,6 +45,6 @@
   "benign_baseline_events": 40,
   "detection_opportunity_window_min": 7.2,
   "detection_opportunity_note": "Intrusion is detectable at initial access (MFA fatigue, KP-0001) ~7.2 min before the first business-impact action (bulk export / BEC). In an enterprise this window is where containment happens.",
-  "unit_tests": "32 passed (fires-on-malicious + silent-on-benign for all 15 rules)",
-  "generated": "2026-09-07T02:38:06Z"
+  "unit_tests": "42 passed (fires-on-malicious + silent-on-benign for all 18 rules + hardening retest)",
+  "generated": "2026-09-07T02:41:29Z"
 }
