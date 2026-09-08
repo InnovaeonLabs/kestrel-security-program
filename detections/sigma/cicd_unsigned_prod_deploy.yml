@@ -1,0 +1,20 @@
+title: Unsigned / Anomalous Production Deploy
+id: KP-0062
+status: experimental
+description: A production deployment ran from an unsigned build or unusual actor - potential poisoned pipeline / build compromise.
+author: Project KESTREL
+date: 2026/09/07
+logsource:
+  service: cicd
+detection:
+  selection:
+    event_type: deploy_prod
+    details.signed: false
+  condition: selection
+fields: [actor, details]
+falsepositives:
+  - A legitimate emergency deploy (should still be signed; investigate any unsigned prod deploy)
+level: critical
+tags:
+  - attack.t1195
+  - attack.t1554

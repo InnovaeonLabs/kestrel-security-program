@@ -8,7 +8,7 @@ Use the header line + 3–5 role-tailored bullets.
 
 ## Core bullets (use anywhere)
 - Designed and built the end-to-end security program for a fictional fintech on a single 8 GB host for $0, using a
-  SIEM-less **detection-as-code** pipeline (Sigma → DuckDB); engineered **18 unit-tested detections** achieving **100%
+  SIEM-less **detection-as-code** pipeline (Sigma → DuckDB); engineered **23 unit-tested detections** achieving **100%
   technique coverage** of an emulated multi-stage intrusion with **0 false positives** on a benign baseline.
 - Emulated a financially-motivated intrusion (identity → endpoint → cloud → API) mapped to **MITRE ATT&CK**, then ran
   the full **detect → investigate → contain → remediate → retest** loop, cutting **7 identity/cloud attack paths to the
@@ -24,8 +24,8 @@ Use the header line + 3–5 role-tailored bullets.
   15 attack steps.
 
 ## Detection Engineer
-- Authored **18 Sigma detections** across identity, endpoint, cloud, API, and LLM sources with a purpose-built
-  Sigma→SQL runner, and wrote **42 unit tests** asserting each rule fires on malicious input and stays silent on benign.
+- Authored **23 Sigma detections** across identity, endpoint, cloud, API, and LLM sources with a purpose-built
+  Sigma→SQL runner, and wrote **56 unit tests** asserting each rule fires on malicious input and stays silent on benign.
 - Generated an **ATT&CK coverage matrix + Navigator layer from the rules themselves**, documenting real coverage gaps
   rather than claiming full coverage.
 

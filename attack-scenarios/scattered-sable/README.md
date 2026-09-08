@@ -11,7 +11,7 @@ No real exploitation, no third party, no malware. `run.py` emits the *same norma
 ## Run
 ```bash
 make emulate SCENARIO=scattered-sable      # emit the chain -> range/data/logs/app.jsonl + timeline.json
-make detect                                 # -> 25 alerts / 18 rules / 12 techniques
+make detect                                 # -> 25 alerts / 18 rules / 16 techniques
 python automation/report/metrics.py         # -> metrics/metrics.json
 ```
 
@@ -36,5 +36,5 @@ python automation/report/metrics.py         # -> metrics/metrics.json
 
 ## Measured result (computed by `automation/report/metrics.py` — see [`../../metrics/metrics.json`](../../metrics/metrics.json))
 - **Chain detection coverage: 100%** (16/16 techniques, 18/18 steps) — for *this emulated chain* (broader ATT&CK gaps are documented in [`../../detections/coverage/`](../../detections/coverage/)).
-- **25 alerts**, **15/18 rules fired**, **0 false positives** on the 40-event benign baseline.
+- **25 alerts**, **18/18 rules fired**, **0 false positives** on the 40-event benign baseline.
 - **Detection-opportunity window ≈ 6 min** between first detectable step (MFA fatigue) and first business-impact action (exfil/BEC) — the window where an analyst contains the intrusion.

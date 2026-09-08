@@ -4,23 +4,24 @@ Custom, **unit-tested** detections written as portable **Sigma** YAML, compiled 
 normalized telemetry. This is the spine of the whole project.
 
 ## What ships
-- **18 rules** in [`sigma/`](sigma/) across Identity, Email, SaaS, App/API, Endpoint, Cloud, and LLM.
+- **23 rules** in [`sigma/`](sigma/) across Identity, Email, SaaS, App/API, Endpoint, Cloud, and LLM.
 - A **compiler/runner** ([`../automation/detect/run_sigma.py`](../automation/detect/run_sigma.py)) — a purpose-built
   Sigma-subset engine (+ temporal/threshold aggregation) so it stays dependency-light on an 8 GB host.
-- **42 passing unit tests** ([`tests/`](tests/)) — every rule is asserted to **fire on malicious input** and stay
+- **56 passing unit tests** ([`tests/`](tests/)) — every rule is asserted to **fire on malicious input** and stay
   **silent on benign** input. Evidence: [`../evidence/alerts/pytest-detections.txt`](../evidence/alerts/pytest-detections.txt).
-- An auto-generated **ATT&CK coverage matrix** + **Navigator layer** ([`coverage/`](coverage/)) — 16 techniques
+- An auto-generated **ATT&CK coverage matrix** + **Navigator layer** ([`coverage/`](coverage/)) — 20 techniques
   covered, with **documented gaps** (nothing hidden).
 
 ## Run
 ```bash
 make detect     # normalize -> run all rules -> evidence/alerts/alerts.jsonl
-make test       # pytest: 42 tests, fires-on-malicious + silent-on-benign
+make test       # pytest: 56 tests, fires-on-malicious + silent-on-benign
 python automation/detect/coverage.py   # regenerate the coverage matrix + Navigator layer
 ```
-Current result on baseline+scenario telemetry: **25 alerts / 16 techniques** fire (identity, endpoint, cloud). The
-App/API + LLM rules are intentionally **silent on the benign baseline** (zero false positives) and fire once the API is
-attacked in the Phase 8 emulation — proven now by their unit tests.
+Current result on the **SCATTERED SABLE** flagship run: **25 alerts / 16 techniques** fire. Running **all three
+scenarios** fires **all 23 rules / 20 techniques** ([`../evidence/alerts/all-scenarios-detection-run.txt`](../evidence/alerts/all-scenarios-detection-run.txt)).
+App/API + LLM rules are intentionally **silent on the benign baseline** (zero false positives) and fire under attack —
+proven by their unit tests.
 
 ## Rule catalogue
 | ID | Title | Source | ATT&CK | Level |
@@ -43,6 +44,14 @@ attacked in the Phase 8 emulation — proven now by their unit tests.
 | KP-0040 | Phishing Link Click to Lookalike Domain | Email | T1566 | high |
 | KP-0041 | Credential Stuffing / Brute Force | App/API | T1110 | medium |
 | KP-0042 | Mailbox Forwarding Rule to External | SaaS | T1114.003 | high |
+| KP-0050 | Off-Hours Bulk Data Access by Internal User | App/API | T1074 | high |
+| KP-0051 | Data Exfiltration to External / Personal Cloud | App/API | T1567.002 | high |
+| KP-0060 | Secret Detected in Commit / CI | CI/CD | T1552 | high |
+| KP-0061 | Vulnerable / Malicious Dependency Introduced | CI/CD | T1195.002 | high |
+| KP-0062 | Unsigned / Anomalous Production Deploy | CI/CD | T1195, T1554 | critical |
+
+> Rules KP-0050/51 (insider) and KP-0060/61/62 (supply-chain) power the two additional scenarios in
+> [`../attack-scenarios/`](../attack-scenarios/). Full catalogue is 23 rules across 6 telemetry sources.
 
 ## Detection documentation template
 Each rule's YAML carries the fields a real detection engineer expects, and the story for each is:

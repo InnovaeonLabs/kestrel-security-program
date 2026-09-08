@@ -1,4 +1,5 @@
-=== 25 alerts from 23 rules -> evidence\alerts\alerts.jsonl
+=== 31 alerts from 23 rules -> evidence\alerts\alerts.jsonl
+    2  Bulk Customer Data Export
     2  IAM Privilege Escalation - AdministratorAccess Attached
     2  S3 Bucket Policy Made Public
     2  Secrets Manager Access by Assumed Role
@@ -7,19 +8,18 @@
     2  Registry Run Key Persistence
     2  OAuth Token Grant Following MFA Fatigue
     1  Invoice Bank-Detail Change (BEC Indicator)
-    1  Bulk Customer Data Export
     1  IDOR - Payout Object Enumeration
     1  JWT alg=none Accepted (Auth Bypass)
     1  SQL Injection Indicators in Merchant Search
     1  SSRF to Internal / Cloud Metadata
+    1  Secret Detected in Commit / CI
+    1  Unsigned / Anomalous Production Deploy
+    1  Vulnerable / Malicious Dependency Introduced
     1  Phishing Link Click to Lookalike Domain
     1  Credential Stuffing / Brute Force
     1  MFA Fatigue - Repeated Push Denials
+    1  Data Exfiltration to External / Personal Cloud Storage
+    1  Off-Hours Bulk Data Access by Internal User
     1  LLM Prompt Injection / Insecure Tool Use (Support Copilot)
     1  Mailbox Forwarding Rule to External Address
-  (silent)   0  Secret Detected in Commit / CI
-  (silent)   0  Unsigned / Anomalous Production Deploy
-  (silent)   0  Vulnerable / Malicious Dependency Introduced
-  (silent)   0  Data Exfiltration to External / Personal Cloud Storage
-  (silent)   0  Off-Hours Bulk Data Access by Internal User
-techniques detected: T1059, T1059.001, T1071, T1074, T1110, T1114, T1114.003, T1190, T1530, T1547.001, T1548, T1550.001, T1552, T1552.001, T1566, T1621
+techniques detected: T1059, T1059.001, T1071, T1074, T1110, T1114, T1114.003, T1190, T1195, T1195.002, T1530, T1547.001, T1548, T1550.001, T1552, T1552.001, T1554, T1566, T1567.002, T1621

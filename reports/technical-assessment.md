@@ -12,7 +12,7 @@ emulation → IR/DFIR → remediation → measurement. All artifacts are in-repo
 ## Controls built & validated
 | Domain | Control | Validation |
 |---|---|---|
-| Detection | 18 Sigma rules + Sigma→DuckDB runner | 42 unit tests pass; 25 alerts on emulation; 0 FP baseline |
+| Detection | 23 Sigma rules + Sigma→DuckDB runner | 56 unit tests pass; 25 alerts on emulation; 0 FP baseline |
 | Threat-informed defense | ATT&CK coverage matrix + Navigator | generated from rules; gaps documented |
 | Cloud/IAM | least-priv roles, SCP, S3 BPA, rotation | Checkov re-scan; attack-paths 7→0 |
 | AppSec | authz, alg-pinning, paramz queries, SSRF allow-list, copilot guards | `appsec/tests` (4 pass) |

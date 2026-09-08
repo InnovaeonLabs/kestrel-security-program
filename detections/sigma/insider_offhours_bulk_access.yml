@@ -1,0 +1,24 @@
+title: Off-Hours Bulk Data Access by Internal User
+id: KP-0050
+status: experimental
+description: An authenticated internal user reading a large number of customer records outside business hours - insider data-theft indicator (legitimate access, abnormal volume/timing).
+author: Project KESTREL
+date: 2026/09/07
+logsource:
+  service: kestrel-api
+detection:
+  selection:
+    event_type: object_access
+    details.off_hours: true
+  condition: selection
+aggregation:
+  group_by: actor
+  timespan: 30m
+  threshold: 10
+fields: [actor, src_ip, object_id, details]
+falsepositives:
+  - Approved off-hours batch job (should use a service identity + change window)
+level: high
+tags:
+  - attack.t1074
+  - attack.collection

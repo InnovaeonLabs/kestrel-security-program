@@ -55,6 +55,7 @@ LOGSOURCE_MAP = {  # (product,category,service) hints -> base SQL predicate
     ("", "", "okta"): "source='identity'",
     ("", "", "saas"): "source='saas'",
     ("", "", "email"): "source='email'",
+    ("", "", "cicd"): "source='cicd'",
     ("identity", "", ""): "source='identity'",
     ("windows", "process_creation", ""): "source='sysmon' AND event_type='process_create'",
     ("windows", "registry_set", ""): "source='sysmon' AND event_type='registry_set'",

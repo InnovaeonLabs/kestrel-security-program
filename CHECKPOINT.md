@@ -21,7 +21,7 @@
 | 4 | Baseline security controls | ✅ DONE | `config/sysmon/`, nginx rate-limit, `KESTREL_HARDENED` toggle, hardened.tf.example |
 | 5 | Vulnerability & exposure assessment | ✅ DONE | `vulnerability-management/register.csv` (12 findings, risk-based) + README |
 | 6 | App / API / Cloud / Identity security | ✅ DONE | `appsec/` (8 findings, 4 retest pass), `cloud-security/` (Checkov 41), `identity/graph/` (7→0) |
-| 7 | Detection engineering | ✅ DONE | `detections/sigma/` (18 rules), `automation/detect/run_sigma.py`, `detections/tests/` (42 pass), `detections/coverage/` |
+| 7 | Detection engineering | ✅ DONE | `detections/sigma/` (23 rules), `automation/detect/run_sigma.py`, `detections/tests/` (56 pass), `detections/coverage/` |
 | 8 | Controlled adversary simulation | ✅ DONE | `attack-scenarios/scattered-sable/run.py` (18-step chain), `timeline.json` |
 | 9 | Incident response & DFIR | ✅ DONE | `incident-response/INC-2026-0821-*.md` + `exec-summary.md`, `dfir/investigation-notes.md` + `iocs.csv` |
 | 10 | Purple-team improvement | ✅ DONE | `purple-team/scattered-sable-purpleteam.md` (before/after measured) |
@@ -41,7 +41,7 @@
 
 ## Status: ALL 16 PHASES COMPLETE (v1). Ready to push to GitHub.
 - Full pipeline reproduces: `make emulate && make detect && python automation/report/metrics.py && make report`.
-- `make test` (detections) + `pytest appsec/tests` (hardening) all pass (42 tests total); `make triage` + `make report` regenerate case/metrics/dashboard/SVG.
+- `make test` (detections) + `pytest appsec/tests` (hardening) all pass (56 tests total); `make triage` + `make report` regenerate case/metrics/dashboard/SVG.
 - **v2 COMPLETE:** closed ATT&CK gaps (T1566/T1110/T1114.003 → 18 rules/16 techniques/42 tests); SOAR triage playbook
   + threat-intel enrichment + analyst-minutes metric (~120/run); data-driven attack-chain SVG; optional LocalStack
   live-cloud scenario (code, syntax-checked); benign malware-analysis component + YARA rule.

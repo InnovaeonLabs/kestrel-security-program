@@ -1,0 +1,22 @@
+title: Vulnerable / Malicious Dependency Introduced
+id: KP-0061
+status: experimental
+description: A new dependency with a known-vulnerable or malicious advisory was added to the build - software supply-chain risk reaching production.
+author: Project KESTREL
+date: 2026/09/07
+logsource:
+  service: cicd
+detection:
+  selection:
+    event_type: dependency_vuln
+    details.advisory_severity:
+      - critical
+      - high
+  condition: selection
+fields: [actor, details]
+falsepositives:
+  - Low-severity advisories on dev-only deps (scope by severity + runtime reachability)
+level: high
+tags:
+  - attack.t1195.002
+  - attack.initial_access

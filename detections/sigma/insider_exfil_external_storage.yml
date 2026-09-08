@@ -1,0 +1,20 @@
+title: Data Exfiltration to External / Personal Cloud Storage
+id: KP-0051
+status: experimental
+description: Data uploaded from inside to an external file-sharing / personal cloud destination - exfiltration over web services.
+author: Project KESTREL
+date: 2026/09/07
+logsource:
+  service: kestrel-api
+detection:
+  selection:
+    event_type: data_upload_external
+    details.external: true
+  condition: selection
+fields: [actor, src_ip, details]
+falsepositives:
+  - Sanctioned integrations to approved SaaS (allow-list corporate destinations)
+level: high
+tags:
+  - attack.t1567.002
+  - attack.exfiltration

@@ -1,0 +1,26 @@
+[
+  {
+    "step": 1,
+    "technique": "T1078",
+    "detection": "-",
+    "note": "Off-hours login with legitimate credentials (02:14)"
+  },
+  {
+    "step": 2,
+    "technique": "T1074",
+    "detection": "KP-0050",
+    "note": "Read 15 customer/card records off-hours (legit authz)"
+  },
+  {
+    "step": 3,
+    "technique": "T1074",
+    "detection": "KP-0014",
+    "note": "Bulk export of 120 customer records"
+  },
+  {
+    "step": 4,
+    "technique": "T1567.002",
+    "detection": "KP-0051",
+    "note": "Uploaded export to personal cloud (personal-dropbox.example)"
+  }
+]

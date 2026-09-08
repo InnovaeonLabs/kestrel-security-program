@@ -100,6 +100,23 @@ CASES = [
     ("KP-0042",
      [ev(source="saas", event_type="mailbox.rule.create", details={"forward_external": True})],
      [ev(source="saas", event_type="mailbox.rule.create", details={"forward_external": False})]),
+    ("KP-0050",  # off-hours bulk access (>=10 / 30m / actor)
+     [ev(source="kestrel-api", event_type="object_access", actor="ivy", details={"off_hours": True},
+         ts=f"2026-08-21T02:{i:02d}:00.000Z", _n=i) for i in range(10)],
+     [ev(source="kestrel-api", event_type="object_access", actor="ivy", details={"off_hours": False},
+         ts=f"2026-08-21T14:{i:02d}:00.000Z", _n=i) for i in range(10)]),
+    ("KP-0051",
+     [ev(source="kestrel-api", event_type="data_upload_external", details={"external": True})],
+     [ev(source="kestrel-api", event_type="data_upload_external", details={"external": False})]),
+    ("KP-0060",
+     [ev(source="cicd", event_type="secret_scan_hit")],
+     [ev(source="cicd", event_type="build_ok")]),
+    ("KP-0061",
+     [ev(source="cicd", event_type="dependency_vuln", details={"advisory_severity": "critical"})],
+     [ev(source="cicd", event_type="dependency_vuln", details={"advisory_severity": "low"})]),
+    ("KP-0062",
+     [ev(source="cicd", event_type="deploy_prod", details={"signed": False})],
+     [ev(source="cicd", event_type="deploy_prod", details={"signed": True})]),
 ]
 
 

@@ -51,6 +51,34 @@
       "enabled": true
     },
     {
+      "techniqueID": "T1552",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0060 Secret Detected in Commit / CI",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1195",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0062 Unsigned / Anomalous Production Deploy",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1554",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0062 Unsigned / Anomalous Production Deploy",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1195.002",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0061 Vulnerable / Malicious Dependency Introduced",
+      "enabled": true
+    },
+    {
       "techniqueID": "T1548",
       "score": 100,
       "color": "#2ca25f",
@@ -118,6 +146,20 @@
       "score": 100,
       "color": "#2ca25f",
       "comment": "KP-0002 OAuth Token Grant Following MFA Fatigue",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1567.002",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0051 Data Exfiltration to External / Personal Cloud Storage",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1074",
+      "score": 100,
+      "color": "#2ca25f",
+      "comment": "KP-0050 Off-Hours Bulk Data Access by Internal User",
       "enabled": true
     },
     {

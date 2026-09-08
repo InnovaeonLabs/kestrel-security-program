@@ -4,7 +4,7 @@
 > fintech (**Kestrel Pay, Inc.**) — end to end, on a single 8 GB laptop, for **$0** — using a SIEM-less,
 > **detection-as-code** architecture. Real telemetry, tested detections, a full incident, and before/after metrics.
 
-![status](https://img.shields.io/badge/status-complete-brightgreen) ![cost](https://img.shields.io/badge/cost-%240-brightgreen) ![tests](https://img.shields.io/badge/detection%20tests-42%20passing-brightgreen) ![stack](https://img.shields.io/badge/stack-Python%20%7C%20Docker%20%7C%20Sigma%20%7C%20DuckDB%20%7C%20Terraform-blue) ![framework](https://img.shields.io/badge/mapped%20to-MITRE%20ATT%26CK%20%7C%20NIST%20CSF%202.0%20%7C%20CIS%20v8-orange)
+![status](https://img.shields.io/badge/status-complete-brightgreen) ![cost](https://img.shields.io/badge/cost-%240-brightgreen) ![tests](https://img.shields.io/badge/detection%20tests-56%20passing-brightgreen) ![stack](https://img.shields.io/badge/stack-Python%20%7C%20Docker%20%7C%20Sigma%20%7C%20DuckDB%20%7C%20Terraform-blue) ![framework](https://img.shields.io/badge/mapped%20to-MITRE%20ATT%26CK%20%7C%20NIST%20CSF%202.0%20%7C%20CIS%20v8-orange)
 
 ![Attack chain, detected end to end](dashboard/attack-chain.svg)
 
@@ -33,7 +33,7 @@ intrusion (**"SCATTERED SABLE"**) all the way through the lifecycle:
 **Standout, measurable outcomes** (computed from real artifacts, not invented — see [`metrics/metrics.json`](metrics/metrics.json)):
 - Detection coverage of the emulated intrusion raised from **0% → 100%** (16/16 ATT&CK techniques, 18/18 steps)
 - Intrusion detectable at **initial access**, ~**7 minutes before** the first business-impact action (a real containment window)
-- **0 false positives** on a 40-event benign baseline; **42 detection unit tests** pass (fires-on-malicious + silent-on-benign)
+- **0 false positives** on a 40-event benign baseline; **56 detection unit tests** pass (fires-on-malicious + silent-on-benign)
 - **12 findings** triaged → prioritized by exploitability + exposure + asset value + attack-path → **10 remediated** (2 retested with passing tests)
 - **7 → 0 identity/cloud attack paths** to the crown jewels after least-privilege; **41 IaC misconfigs** caught by static scanning
 
