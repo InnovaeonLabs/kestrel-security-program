@@ -1,0 +1,10 @@
+pip-audit -r range/kestrel-api/requirements.txt   (REMEDIATED, 2026-09-08)
+
+fastapi 0.115.6 -> 0.141.1  (starlette 0.41.3 -> 1.6.0)
+PyJWT   2.10.1  -> 2.13.0
+
+No known vulnerabilities found
+
+Cycle: the fastapi bump cleared the 7 starlette advisories; the retest then surfaced
+12 PyJWT 2.10.1 advisories (fixed in 2.13.0); bumping PyJWT cleared those. Final
+retest is clean and all 56 unit tests still pass on the upgraded stack.

@@ -37,7 +37,7 @@ intrusion (**"SCATTERED SABLE"**) all the way through the lifecycle:
 - **12 findings** triaged → prioritized by exploitability + exposure + asset value + attack-path → **10 remediated** (2 retested with passing tests)
 - **7 → 0 identity/cloud attack paths** to the crown jewels after least-privilege; **41 IaC misconfigs** caught by static scanning
 - The vulnerable app **actually runs and is exploitable end-to-end** — [live attack transcript](evidence/live-attack/transcript.md) (real IDOR/SQLi/SSRF/prompt-injection responses) whose telemetry the detections then catch
-- **Real scanner output committed** ([`devsecops/scan-results/`](devsecops/scan-results/)): gitleaks **8 → 0** after allowlist, bandit **5** SAST findings, pip-audit **7** dependency CVEs, Checkov **41**
+- **Real scanner output committed** ([`devsecops/scan-results/`](devsecops/scan-results/)): gitleaks **8 → 0** after allowlist, bandit **5** SAST findings, pip-audit dependency CVEs **found + remediated to 0** (retested), Checkov **41**
 
 > Architecture diagram: [`docs/architecture/`](docs/architecture/) · One-page exec summary: [`reports/`](reports/)
 

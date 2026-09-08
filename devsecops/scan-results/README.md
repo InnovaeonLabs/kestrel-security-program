@@ -8,7 +8,7 @@ in the abstract. Reproduce any of them with the commands below.
 | **gitleaks** 8.18.4 | Secret scan (git history) | **8 findings raw → 0 after allowlist** | `gitleaks-raw.json`, `gitleaks.json` |
 | **detect-secrets** | Secret scan (entropy+keyword) | 3 decoys flagged | `detect-secrets.json` |
 | **bandit** | Python SAST | 5 findings (SQLi, hardcoded secret, SSRF, …) | `bandit.txt` / `.json` |
-| **pip-audit** | Dependency CVEs (SCA) | 7 advisories in app deps (starlette) | `pip-audit-app.txt` |
+| **pip-audit** | Dependency CVEs (SCA) | 7 (starlette) → **remediated to 0**; retest found+fixed 12 PyJWT | `pip-audit-app.txt`, `pip-audit-app-remediated.txt` |
 | **pip-audit** | Dependency CVEs (demo) | 2 advisories (PyYAML 5.3.1) | `pip-audit-vuln-demo.txt` |
 | **Checkov** | IaC misconfig | 41 fails + 1 secret | `../../evidence/logs/checkov-run.txt` |
 
@@ -33,9 +33,15 @@ KP-0060 / SPLINTER VIPER supply-chain control, proven.
 > `# nosec…` silences it). Renaming them to `# lab-intentional` restored real SAST output — a good reminder that
 > suppression comments hide findings.
 
-## pip-audit — real transitive CVE
-The pinned `fastapi==0.115.6` pulls a vulnerable transitive **starlette 0.41.3** (7 PYSEC advisories). Fix: bump fastapi
-to a current release. A genuine supply-chain finding surfaced by SCA, feeding the vuln-management register (VM-13).
+## pip-audit — a real remediation cycle (discover → fix → retest)
+The pinned `fastapi==0.115.6` pulled a vulnerable transitive **starlette 0.41.3** (7 advisories). This was **remediated
+and retested**:
+1. Bump `fastapi 0.115.6 → 0.141.1` → starlette `0.41.3 → 1.6.0`. Re-scan: **starlette advisories cleared**, but the
+   retest surfaced **12 PyJWT 2.10.1** advisories (fixed in 2.13.0) — exactly how iterative vuln-management works.
+2. Bump `PyJWT 2.10.1 → 2.13.0`. Re-scan: **"No known vulnerabilities found"** (`pip-audit-app-remediated.txt`).
+3. **56 unit tests still pass** on the upgraded stack — remediation without regression.
+
+Findings VM-13 (starlette) and VM-14 (PyJWT) in the register are now **Remediated-Retested**.
 
 ## What did NOT run here (honest)
 - **Semgrep** — its Windows binary support is unreliable; **bandit** is the Python-native SAST substitute that ran for
