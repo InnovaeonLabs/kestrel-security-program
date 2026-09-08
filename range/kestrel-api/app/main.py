@@ -102,7 +102,7 @@ def search_merchants(q: str, request: Request):
             rows = conn.execute("SELECT id,name,country FROM merchants WHERE name LIKE ?",
                                 (f"%{q}%",)).fetchall()
         else:
-            query = f"SELECT id,name,country FROM merchants WHERE name LIKE '%{q}%'"  # nosec-lab
+            query = f"SELECT id,name,country FROM merchants WHERE name LIKE '%{q}%'"  # lab-intentional
             suspicious = any(t in q.lower() for t in ["'", "union", "--", " or ", "1=1", ";"])
             telemetry.emit("db_query", action="search", outcome="success", actor=actor,
                            src_ip=_ip(request), object_type="merchant", severity="high" if suspicious else "info",
@@ -151,7 +151,7 @@ def fetch_logo(url: str, request: Request):
             raise HTTPException(400, "url not allowed")
     if HARDENED:
         try:
-            with urllib.request.urlopen(url, timeout=2) as r:  # nosec-lab: hardened validates above
+            with urllib.request.urlopen(url, timeout=2) as r:  # lab-intentional: hardened validates above
                 return {"fetched_bytes": len(r.read(1024))}
         except Exception:
             raise HTTPException(502, "fetch failed")

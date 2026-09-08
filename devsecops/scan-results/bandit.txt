@@ -1,0 +1,72 @@
+Run started:2026-09-08 03:27:23.405785+00:00
+
+Test results:
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'kestrel-dev-secret'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: range/kestrel-api/app\auth.py:23:20
+22	# --- Planted weak secret (VULN). gitleaks/Semgrep should flag this in CI. ---
+23	_HARDCODED_SECRET = "kestrel-dev-secret"  # lab-intentional: intentional weak secret
+24	HARDENED = os.environ.get("KESTREL_HARDENED", "0") == "1"
+
+--------------------------------------------------
+>> Issue: [B113:request_without_timeout] Call to requests without timeout
+   Severity: Medium   Confidence: Low
+   CWE: CWE-400 (https://cwe.mitre.org/data/definitions/400.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b113_request_without_timeout.html
+   Location: range/kestrel-api/app\copilot.py:103:11
+102	    }
+103	    resp = requests.post(base + "/api/chat", json=payload,
+104	                         timeout=float(os.environ.get("KESTREL_LLM_TIMEOUT", "60")))
+105	    resp.raise_for_status()
+
+--------------------------------------------------
+>> Issue: [B311:blacklist] Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+   Severity: Low   Confidence: High
+   CWE: CWE-330 (https://cwe.mitre.org/data/definitions/330.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b311-random
+   Location: range/kestrel-api/app\db.py:85:10
+84	    """Create schema and load synthetic data. Deterministic for reproducible demos."""
+85	    rng = random.Random(seed)
+86	    with connect() as conn:
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b608_hardcoded_sql_expressions.html
+   Location: range/kestrel-api/app\main.py:105:22
+104	        else:
+105	            query = f"SELECT id,name,country FROM merchants WHERE name LIKE '%{q}%'"  # lab-intentional
+106	            suspicious = any(t in q.lower() for t in ["'", "union", "--", " or ", "1=1", ";"])
+
+--------------------------------------------------
+>> Issue: [B310:blacklist] Audit url open for permitted schemes. Allowing use of file:/ or custom schemes is often unexpected.
+   Severity: Medium   Confidence: High
+   CWE: CWE-22 (https://cwe.mitre.org/data/definitions/22.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b310-urllib-urlopen
+   Location: range/kestrel-api/app\main.py:154:17
+153	        try:
+154	            with urllib.request.urlopen(url, timeout=2) as r:  # lab-intentional: hardened validates above
+155	                return {"fetched_bytes": len(r.read(1024))}
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 536
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 2
+		Medium: 3
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 2
+		Medium: 1
+		High: 2
+Files skipped (0):

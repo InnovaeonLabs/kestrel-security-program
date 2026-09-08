@@ -20,7 +20,7 @@ import jwt  # PyJWT
 from . import telemetry
 
 # --- Planted weak secret (VULN). gitleaks/Semgrep should flag this in CI. ---
-_HARDCODED_SECRET = "kestrel-dev-secret"  # nosec-lab: intentional weak secret
+_HARDCODED_SECRET = "kestrel-dev-secret"  # lab-intentional: intentional weak secret
 HARDENED = os.environ.get("KESTREL_HARDENED", "0") == "1"
 
 

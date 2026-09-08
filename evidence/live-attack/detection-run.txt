@@ -1,0 +1,25 @@
+=== 20 alerts from 23 rules -> evidence\alerts\alerts.jsonl
+    4  LLM Prompt Injection / Insecure Tool Use (Support Copilot)
+    2  SQL Injection Indicators in Merchant Search
+    2  SSRF to Internal / Cloud Metadata
+    1  Invoice Bank-Detail Change (BEC Indicator)
+    1  Bulk Customer Data Export
+    1  JWT alg=none Accepted (Auth Bypass)
+    1  IAM Privilege Escalation - AdministratorAccess Attached
+    1  S3 Bucket Policy Made Public
+    1  Secrets Manager Access by Assumed Role
+    1  Encoded / Hidden PowerShell Execution
+    1  LOLBin Making Network Connection
+    1  Registry Run Key Persistence
+    1  Credential Stuffing / Brute Force
+    1  MFA Fatigue - Repeated Push Denials
+    1  OAuth Token Grant Following MFA Fatigue
+  (silent)   0  IDOR - Payout Object Enumeration
+  (silent)   0  Secret Detected in Commit / CI
+  (silent)   0  Unsigned / Anomalous Production Deploy
+  (silent)   0  Vulnerable / Malicious Dependency Introduced
+  (silent)   0  Phishing Link Click to Lookalike Domain
+  (silent)   0  Data Exfiltration to External / Personal Cloud Storage
+  (silent)   0  Off-Hours Bulk Data Access by Internal User
+  (silent)   0  Mailbox Forwarding Rule to External Address
+techniques detected: T1059, T1059.001, T1071, T1074, T1110, T1114, T1190, T1530, T1547.001, T1548, T1550.001, T1552, T1552.001, T1621

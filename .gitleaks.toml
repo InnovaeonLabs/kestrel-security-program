@@ -4,15 +4,22 @@
 # green while still catching any NEW, un-allowlisted secret.
 title = "kestrel-gitleaks"
 
+# Keep gitleaks' full built-in ruleset (AWS keys, tokens, etc.) AND apply our allowlist.
+[extend]
+useDefault = true
+
 [allowlist]
 description = "Intentional, non-functional lab decoys (documented in code as lab-only)"
 regexes = [
-  '''kestrel-dev-secret''',          # app/auth.py: intentional weak JWT secret (finding APP-2)
-  '''kp_live_5f3a9c2b7e1d''',        # app/db.py + copilot.py: fake 'live' token decoy
-  '''changeme-lab-only''',           # terraform: intentional hardcoded RDS password (Checkov CKV_SECRET_6)
-  '''lab-only-not-a-secret''',       # docker-compose postgres dev password
+  '''kestrel-dev-secret''',            # app/auth.py: intentional weak JWT secret (finding APP-2)
+  '''kp_live_5f3a9c2b7e1d''',          # app/db.py + copilot.py: fake 'live' token decoy
+  '''changeme-lab-only''',             # terraform: intentional hardcoded RDS password (Checkov CKV_SECRET_6)
+  '''lab-only-not-a-secret''',         # docker-compose postgres dev password
+  '''AKIA-LAB-DECOY-NOT-A-REAL-KEY''',          # devsecops/ci/leaked-key-demo.env: fake AWS key (gitleaks demo)
+  '''wJalrXUtnFEMI[A-Za-z0-9/+]+''',   # matching fake AWS secret key
 ]
 paths = [
-  '''evidence/.*''',                 # captured scan outputs may echo the decoys
+  '''evidence/.*''',                   # captured scan outputs may echo the decoys
   '''.*\.sample\..*''',
+  '''.*scan-results/.*''',             # committed scanner output echoes decoys
 ]
