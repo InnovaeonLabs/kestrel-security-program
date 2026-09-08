@@ -46,11 +46,21 @@ jobs:
         continue-on-error: true
         env:
           GITLEAKS_CONFIG: .gitleaks.toml
+      - name: detect-secrets
+        continue-on-error: true
+        run: |
+          python -m pip install detect-secrets
+          detect-secrets scan range/kestrel-api cloud-security docker-compose.yml
 
   sast:                        # report-only (finds intentional app vulns)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: bandit (Python SAST)
+        continue-on-error: true
+        run: |
+          python -m pip install bandit
+          bandit -r range/kestrel-api/app -f txt
       - name: Semgrep
         continue-on-error: true
         run: |

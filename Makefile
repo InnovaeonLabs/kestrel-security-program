@@ -24,6 +24,17 @@ range-up:
 range-down:
 	docker compose down
 
+run-app:      ## run the real vulnerable app locally (no Docker): http://127.0.0.1:8080
+	cd range/kestrel-api && KESTREL_LOG_DIR=../data/logs $(PY) -m uvicorn app.main:app --host 127.0.0.1 --port 8080
+
+live-attack:  ## drive the REAL running app over HTTP + record vulnerable responses
+	$(PY) scripts/live_attack.py --base http://127.0.0.1:8080
+
+scan:         ## run the security scanners locally (bandit/pip-audit/detect-secrets)
+	$(PY) -m bandit -r range/kestrel-api/app -f txt || true
+	$(PY) -m detect_secrets scan range/kestrel-api cloud-security docker-compose.yml
+	$(PY) -m pip_audit -r range/kestrel-api/requirements.txt || true
+
 seed:
 	cd range/kestrel-api && $(PY) seed.py
 

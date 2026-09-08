@@ -11,13 +11,13 @@ scanners are meant to **find** things. Therefore:
 - **Report-only jobs — `secret-scan` (gitleaks), `sast` (Semgrep), `iac-scan` (Checkov), `deps` (pip-audit):** surface
   the planted issues as findings/artifacts. In a real product repo these would gate; here they demonstrate coverage.
 
-## What each catches (already proven locally)
+## What each catches (REAL scanner output committed → `scan-results/`)
 | Check | Tool | Finds |
 |---|---|---|
-| Secrets | gitleaks | `kestrel-dev-secret`, fake live token, hardcoded RDS pw (allowlisted as lab decoys in `.gitleaks.toml`) |
-| SAST | Semgrep | SQLi via string-format, SSRF, weak JWT handling in `range/kestrel-api` |
-| IaC | Checkov | 41 misconfigs + 1 secret (`evidence/logs/checkov-run.txt`) |
-| Dependencies | pip-audit | known-vuln pins (SCA); pair with SBOM in prod |
+| Secrets | gitleaks | **8 raw → 0 after allowlist** (`scan-results/gitleaks-raw.json`); detect-secrets found 3 |
+| SAST | bandit (Semgrep in CI) | **5 findings** incl. SQLi/hardcoded-secret/SSRF (`scan-results/bandit.txt`) |
+| IaC | Checkov | **41 misconfigs + 1 secret** (`../evidence/logs/checkov-run.txt`) |
+| Dependencies | pip-audit | **7 CVEs** in app deps (starlette); demo pin +2 (`scan-results/pip-audit-app.txt`) |
 
 ## Supply-chain lesson
 The `.gitleaks.toml` allowlist covers only the **documented** decoys — a **new** committed secret is still caught and

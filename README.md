@@ -36,6 +36,8 @@ intrusion (**"SCATTERED SABLE"**) all the way through the lifecycle:
 - **0 false positives** on a 40-event benign baseline; **56 detection unit tests** pass (fires-on-malicious + silent-on-benign)
 - **12 findings** triaged → prioritized by exploitability + exposure + asset value + attack-path → **10 remediated** (2 retested with passing tests)
 - **7 → 0 identity/cloud attack paths** to the crown jewels after least-privilege; **41 IaC misconfigs** caught by static scanning
+- The vulnerable app **actually runs and is exploitable end-to-end** — [live attack transcript](evidence/live-attack/transcript.md) (real IDOR/SQLi/SSRF/prompt-injection responses) whose telemetry the detections then catch
+- **Real scanner output committed** ([`devsecops/scan-results/`](devsecops/scan-results/)): gitleaks **8 → 0** after allowlist, bandit **5** SAST findings, pip-audit **7** dependency CVEs, Checkov **41**
 
 > Architecture diagram: [`docs/architecture/`](docs/architecture/) · One-page exec summary: [`reports/`](reports/)
 
@@ -95,10 +97,12 @@ judgment is visible instead of hidden. See [`docs/architecture/lab-vs-enterprise
 git clone <this-repo> && cd kestrel-security-program
 python -m venv .venv && . .venv/Scripts/activate    # (Linux/macOS: source .venv/bin/activate)
 pip install -r requirements.txt
-make range-up          # brings up the light Kestrel Pay range (one profile at a time)
-make emulate SCENARIO=scattered-sable   # runs the benign, self-cleaning adversary chain
+make run-app           # runs the REAL vulnerable app at http://127.0.0.1:8080 (no Docker needed)
+make live-attack       # drives the running app over HTTP → real vulnerable responses + telemetry
+make emulate SCENARIO=scattered-sable   # (alt) benign, self-cleaning adversary chain via telemetry
 make detect            # compiles + runs Sigma detections over collected telemetry
-make report            # regenerates metrics + dashboards from evidence
+make scan              # runs bandit / detect-secrets / pip-audit locally
+make report            # regenerates metrics + dashboards + attack-chain SVG from evidence
 ```
 
 > **Safety & scope.** All offensive activity is benign, reversible, and confined to this lab (containers + a scoped
