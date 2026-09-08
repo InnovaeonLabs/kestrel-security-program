@@ -42,6 +42,9 @@
 ## Status: ALL 16 PHASES COMPLETE (v1). Ready to push to GitHub.
 - Full pipeline reproduces: `make emulate && make detect && python automation/report/metrics.py && make report`.
 - `make test` (detections) + `pytest appsec/tests` (hardening) all pass (56 tests total); `make triage` + `make report` regenerate case/metrics/dashboard/SVG.
+- **Post-v2 additions:** LLM copilot wired to a real local model (Ollama) with mock fallback + backend-agnostic
+  output-leak detection; two more attack scenarios — HOLLOW HERON (insider) + SPLINTER VIPER (supply-chain/CI-CD)
+  → 23 rules / 56 tests / 6 telemetry sources; flagship metrics remain SCATTERED-SABLE-only.
 - **v2 COMPLETE:** closed ATT&CK gaps (T1566/T1110/T1114.003 → 18 rules/16 techniques/42 tests); SOAR triage playbook
   + threat-intel enrichment + analyst-minutes metric (~120/run); data-driven attack-chain SVG; optional LocalStack
   live-cloud scenario (code, syntax-checked); benign malware-analysis component + YARA rule.

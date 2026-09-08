@@ -22,7 +22,7 @@ intrusion (**"SCATTERED SABLE"**) all the way through the lifecycle:
 
 | I built | With (all free/OSS) |
 |---|---|
-| A vulnerable payments **API + LLM support copilot** (AppSec, API abuse, **prompt injection**) | Python / FastAPI |
+| A vulnerable payments **API + LLM copilot** (prompt injection; real local model via Ollama or mock) | Python / FastAPI |
 | A **detection-as-code** pipeline (Sigma rules → SQL, MITRE-mapped, unit-tested) | Sigma, DuckDB, Python |
 | **Real endpoint telemetry** from a live Windows host (no VM) | Sysmon + PowerShell logging |
 | A **cloud IAM attack-path** analysis + IaC scanning | Terraform, Checkov, Python (networkx) |
@@ -75,7 +75,7 @@ judgment is visible instead of hidden. See [`docs/architecture/lab-vs-enterprise
 | Vulnerable API + LLM copilot | [`range/kestrel-api/`](range/kestrel-api/) · [`appsec/`](appsec/) |
 | Detection-as-code (Sigma + runner + tests) | [`detections/`](detections/) · [`automation/`](automation/) |
 | ATT&CK coverage matrix / Navigator layer | [`detections/coverage/`](detections/) |
-| Attack scenarios (SCATTERED SABLE chain) | [`attack-scenarios/scattered-sable/`](attack-scenarios/scattered-sable/) |
+| Attack scenarios (3: external, insider, supply-chain) | [`attack-scenarios/`](attack-scenarios/) |
 | Purple-team report (before/after) | [`purple-team/`](purple-team/) |
 | Incident response + DFIR | [`incident-response/`](incident-response/) · [`dfir/`](dfir/) |
 | Malware analysis (benign, self-authored sample) | [`dfir/malware-analysis/`](dfir/malware-analysis/analysis.md) |
