@@ -42,6 +42,10 @@
 ## Status: ALL 16 PHASES COMPLETE (v1). Ready to push to GitHub.
 - Full pipeline reproduces: `make emulate && make detect && python automation/report/metrics.py && make report`.
 - `make test` (detections) + `pytest appsec/tests` (hardening) all pass (56 tests total); `make triage` + `make report` regenerate case/metrics/dashboard/SVG.
+- **Proof pass (2026-09-07):** stood up the REAL app (uvicorn) and drove it over HTTP — live IDOR/SQLi/SSRF/
+  prompt-injection responses captured (`evidence/live-attack/`), its own telemetry fires the detections. Ran REAL
+  scanners: gitleaks (8→0 w/ allowlist), bandit (5 SAST), pip-audit (7 dep CVEs→VM-13), detect-secrets (3) →
+  `devsecops/scan-results/`. Fixed a self-inflicted `# nosec-lab` bandit-suppression bug. gitleaks CI gate verified green.
 - **Post-v2 additions:** LLM copilot wired to a real local model (Ollama) with mock fallback + backend-agnostic
   output-leak detection; two more attack scenarios — HOLLOW HERON (insider) + SPLINTER VIPER (supply-chain/CI-CD)
   → 23 rules / 56 tests / 6 telemetry sources; flagship metrics remain SCATTERED-SABLE-only.
