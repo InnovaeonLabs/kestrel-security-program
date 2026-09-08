@@ -5,7 +5,7 @@ in the abstract. Reproduce any of them with the commands below.
 
 | Tool | Type | Result | File |
 |---|---|---|---|
-| **gitleaks** 8.18.4 | Secret scan (git history) | **8 findings raw → 0 after allowlist** | `gitleaks-raw.json`, `gitleaks.json` |
+| **gitleaks** 8.18.4 | Secret scan (git history) | **14 findings raw → 0 after allowlist** | `gitleaks-raw.json`, `gitleaks.json` |
 | **detect-secrets** | Secret scan (entropy+keyword) | 3 decoys flagged | `detect-secrets.json` |
 | **bandit** | Python SAST | 5 findings (SQLi, hardcoded secret, SSRF, …) | `bandit.txt` / `.json` |
 | **pip-audit** | Dependency CVEs (SCA) | 7 (starlette) → **remediated to 0**; retest found+fixed 12 PyJWT | `pip-audit-app.txt`, `pip-audit-app-remediated.txt` |
@@ -14,13 +14,15 @@ in the abstract. Reproduce any of them with the commands below.
 
 ## gitleaks — the before/after that matters
 ```bash
-gitleaks detect --source . -c <default-only>      # RAW: 8 findings
+gitleaks detect --source . -c <default-only>      # RAW: 14 findings
 gitleaks detect --source . -c .gitleaks.toml      # allowlisted: 0 (CI green)
 ```
-Raw findings (default ruleset): `1 aws-access-token`, `5 generic-api-key`, `1 jwt`, `1 hashicorp-tf-password`. The
+Raw findings (default ruleset): `10 generic-api-key`, `3 jwt`, `1 hashicorp-tf-password`. The
 `.gitleaks.toml` allowlist (which keeps the full default ruleset via `useDefault=true`) suppresses **only the
 documented lab decoys**, so CI stays green **and a NEW, un-allowlisted secret would still fail the scan**. This is the
 KP-0060 / SPLINTER VIPER supply-chain control, proven.
+
+> **Lesson (real):** an earlier version committed a format-valid **fake AWS key** (`AKIA…`) as a decoy. Even fake, an `AKIA`-pattern key trips **GitHub's own push-protection** and would block a push — so it was **neutralized** (`AKIA-LAB-DECOY-NOT-A-REAL-KEY`) across history before publishing. The gitleaks demo still stands on the other decoys. Takeaway: never commit even a *fake* AWS-format key.
 
 ## bandit — SAST caught the intentional flaws
 `bandit -r range/kestrel-api/app` →

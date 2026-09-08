@@ -14,7 +14,7 @@ scanners are meant to **find** things. Therefore:
 ## What each catches (REAL scanner output committed → `scan-results/`)
 | Check | Tool | Finds |
 |---|---|---|
-| Secrets | gitleaks | **8 raw → 0 after allowlist** (`scan-results/gitleaks-raw.json`); detect-secrets found 3 |
+| Secrets | gitleaks | **14 raw → 0 after allowlist** (`scan-results/gitleaks-raw.json`); detect-secrets found 3 |
 | SAST | bandit (Semgrep in CI) | **5 findings** incl. SQLi/hardcoded-secret/SSRF (`scan-results/bandit.txt`) |
 | IaC | Checkov | **41 misconfigs + 1 secret** (`../evidence/logs/checkov-run.txt`) |
 | Dependencies | pip-audit | **7 CVEs** in app deps (starlette); demo pin +2 (`scan-results/pip-audit-app.txt`) |

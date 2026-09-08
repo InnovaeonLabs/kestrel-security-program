@@ -15,7 +15,7 @@ regexes = [
   '''kp_live_5f3a9c2b7e1d''',          # app/db.py + copilot.py: fake 'live' token decoy
   '''changeme-lab-only''',             # terraform: intentional hardcoded RDS password (Checkov CKV_SECRET_6)
   '''lab-only-not-a-secret''',         # docker-compose postgres dev password
-  '''AKIA-LAB-DECOY-NOT-A-REAL-KEY''',          # devsecops/ci/leaked-key-demo.env: fake AWS key (gitleaks demo)
+  '''AKIA-LAB-DECOY-NOT-A-REAL-KEY''',          # devsecops/ci/leaked-key-demo.env: NEUTRALIZED fake AWS key (AKIA-pattern removed pre-push)
   '''wJalrXUtnFEMI[A-Za-z0-9/+]+''',   # matching fake AWS secret key
 ]
 paths = [
