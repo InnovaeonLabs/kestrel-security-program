@@ -94,7 +94,7 @@ judgment is visible instead of hidden. See [`docs/architecture/lab-vs-enterprise
 ### Reproduce it
 ```bash
 # Prereqs: Docker, Python 3.11+, Git. Everything else installs into a local venv.
-git clone <this-repo> && cd kestrel-security-program
+git clone https://github.com/InnovaeonLabs/kestrel-security-program.git && cd kestrel-security-program
 python -m venv .venv && . .venv/Scripts/activate    # (Linux/macOS: source .venv/bin/activate)
 pip install -r requirements.txt
 make run-app           # runs the REAL vulnerable app at http://127.0.0.1:8080 (no Docker needed)
