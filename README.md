@@ -6,9 +6,9 @@
 
 ![status](https://img.shields.io/badge/status-complete-brightgreen) ![cost](https://img.shields.io/badge/cost-%240-brightgreen) ![tests](https://img.shields.io/badge/detection%20tests-56%20passing-brightgreen) ![stack](https://img.shields.io/badge/stack-Python%20%7C%20Docker%20%7C%20Sigma%20%7C%20DuckDB%20%7C%20Terraform-blue) ![framework](https://img.shields.io/badge/mapped%20to-MITRE%20ATT%26CK%20%7C%20NIST%20CSF%202.0%20%7C%20CIS%20v8-orange)
 
-![Attack chain, detected end to end](dashboard/attack-chain.svg)
+![Project KESTREL — attack to detection demo](dashboard/demo.gif)
 
-*The emulated SCATTERED SABLE intrusion — every step mapped to an ATT&CK technique and the tested detection that caught it (generated from real data by `make report`).*
+*Real attack against the running app → tested detections firing → measured result. See the full 18-step chain as a [static diagram](dashboard/attack-chain.svg).*
 
 🔗 **Live dashboard:** https://innovaeonlabs.github.io/kestrel-security-program/ · 📊 **Attack-chain visual** above (renders on GitHub)
 

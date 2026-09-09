@@ -51,6 +51,7 @@ report:
 	$(PY) automation/report/build_report.py
 	$(PY) automation/report/build_visuals.py
 	$(PY) automation/report/build_social.py
+	$(PY) automation/report/build_demo_gif.py
 
 test:
 	$(PYV) -m pytest -q detections/tests
