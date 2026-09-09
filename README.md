@@ -10,7 +10,9 @@
 
 *Real attack against the running app → tested detections firing → measured result. See the full 18-step chain as a [static diagram](dashboard/attack-chain.svg).*
 
-🔗 **Live dashboard:** https://innovaeonlabs.github.io/kestrel-security-program/ · 📊 **Attack-chain visual** above (renders on GitHub)
+🔗 **Live dashboard:** https://innovaeonlabs.github.io/kestrel-security-program/
+
+> **About this project.** Project KESTREL is an independent, self-directed learning project — the entire security program of a *fictional* company (Kestrel Pay), recreated for **$0** and taken end to end (attack → detect → respond → remediate → measure). Everything here is **reproducible** and backed by **evidence in the repo**, and I can walk through any decision in it.
 
 ---
 
