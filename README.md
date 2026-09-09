@@ -10,6 +10,8 @@
 
 *The emulated SCATTERED SABLE intrusion — every step mapped to an ATT&CK technique and the tested detection that caught it (generated from real data by `make report`).*
 
+🔗 **Live dashboard:** https://innovaeonlabs.github.io/kestrel-security-program/ · 📊 **Attack-chain visual** above (renders on GitHub)
+
 ---
 
 ## ⏱️ 30-Second Recruiter View

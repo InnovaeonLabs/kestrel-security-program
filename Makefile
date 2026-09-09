@@ -50,6 +50,7 @@ triage:
 report:
 	$(PY) automation/report/build_report.py
 	$(PY) automation/report/build_visuals.py
+	$(PY) automation/report/build_social.py
 
 test:
 	$(PYV) -m pytest -q detections/tests
