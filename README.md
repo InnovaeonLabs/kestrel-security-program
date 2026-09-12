@@ -113,4 +113,6 @@ make report            # regenerates metrics + dashboards + attack-chain SVG fro
 > local folder). No live malware, no third-party targets. See [`SECURITY.md`](SECURITY.md) and each scenario's scope note.
 
 ---
+Built by **Markese Raley** — SAL1 (Security Analyst Level 1) certified · [TryHackMe Top 2%](https://tryhackme.com/p/Gh0stR00t4lpha.exe) · [GitHub](https://github.com/InnovaeonLabs)
+
 *Independent portfolio project. "Kestrel Pay" is a fictional company; any resemblance to real entities is coincidental.*
